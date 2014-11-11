@@ -10,9 +10,15 @@ namespace GiftSystem.Web.Infrastructure.Mapping
 {
     public class AutoMapperConfig
     {
+        private Assembly assembly;
+
+        public AutoMapperConfig(Assembly assembly)
+        {
+            this.assembly = assembly;
+        }
         public void Execute()
         {
-            var types = Assembly.GetExecutingAssembly().GetExportedTypes();
+            var types = assembly.GetExportedTypes();
 
             LoadStandardMappings(types);
 
