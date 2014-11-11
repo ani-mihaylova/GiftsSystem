@@ -65,6 +65,11 @@ namespace GiftsSystem.Web.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name="User Name")]
+        [DataType(DataType.Text)]
+        public string Username { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
