@@ -12,13 +12,7 @@ namespace GiftsSystem.Web.Controllers
     public class HomeController : Controller
     {
         private IGenericRepository<Category> categories;
-
-        public HomeController()
-            :this(new GenericRepository<Category>(new ApplicationDbContext()))
-        {
-           
-        }
-
+     
         public HomeController(IGenericRepository<Category> categories)
         {
             this.categories = categories;
