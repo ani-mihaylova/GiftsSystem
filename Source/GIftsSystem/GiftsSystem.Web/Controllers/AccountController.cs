@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GiftsSystem.Web.Models;
+using GiftsSystem.Models;
 
 namespace GiftsSystem.Web.Controllers
 {

@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using GiftsSystem.Web.Models;
+using GiftsSystem.Models;
+using GiftsSystem.Data;
 
 namespace GiftsSystem.Web
 {
