@@ -3,28 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GiftsSystem.Data;
+using GiftsSystem.Data.Common.Repositories;
+using GiftsSystem.Models;
 
 namespace GiftsSystem.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IGenericRepository<Category> categories;
+
+        public HomeController()
+            :this(new GenericRepository<Category>(new ApplicationDbContext()))
+        {
+           
+        }
+
+        public HomeController(IGenericRepository<Category> categories)
+        {
+            this.categories = categories;
+        }
+
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var all = this.categories.All();
+            return View(all);
         }
     }
 }
