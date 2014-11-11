@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{6938921F-26EA-4C08-878F-0906BD0A0B18}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{019733DB-864C-400E-9C89-E51DE99943CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{95619D06-157E-4523-8EEC-FC6AF208B678}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{ECCAF7D1-4C8A-48A5-A65D-B43D0F46A745}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{855001C6-36D9-43B3-A55B-3C29C882B1A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Data", "GiftsSystem.Data\GiftsSystem.Data.csproj", "{92C3E5F1-5B92-4E2C-A797-F9946A57C5CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Models", "GiftsSystem.Models\GiftsSystem.Models.csproj", "{20A46FAE-B370-4427-9A04-8BF5797A50E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Web", "GiftsSystem.Web\GiftsSystem.Web.csproj", "{40D8575C-5337-4B19-A829-CC3C063E12BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +23,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6938921F-26EA-4C08-878F-0906BD0A0B18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6938921F-26EA-4C08-878F-0906BD0A0B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6938921F-26EA-4C08-878F-0906BD0A0B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6938921F-26EA-4C08-878F-0906BD0A0B18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C3E5F1-5B92-4E2C-A797-F9946A57C5CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C3E5F1-5B92-4E2C-A797-F9946A57C5CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C3E5F1-5B92-4E2C-A797-F9946A57C5CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C3E5F1-5B92-4E2C-A797-F9946A57C5CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20A46FAE-B370-4427-9A04-8BF5797A50E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A46FAE-B370-4427-9A04-8BF5797A50E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A46FAE-B370-4427-9A04-8BF5797A50E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20A46FAE-B370-4427-9A04-8BF5797A50E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40D8575C-5337-4B19-A829-CC3C063E12BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D8575C-5337-4B19-A829-CC3C063E12BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D8575C-5337-4B19-A829-CC3C063E12BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D8575C-5337-4B19-A829-CC3C063E12BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{92C3E5F1-5B92-4E2C-A797-F9946A57C5CD} = {95619D06-157E-4523-8EEC-FC6AF208B678}
+		{20A46FAE-B370-4427-9A04-8BF5797A50E1} = {019733DB-864C-400E-9C89-E51DE99943CA}
+		{40D8575C-5337-4B19-A829-CC3C063E12BD} = {855001C6-36D9-43B3-A55B-3C29C882B1A2}
 	EndGlobalSection
 EndGlobal
