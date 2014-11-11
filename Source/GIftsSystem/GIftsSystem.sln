@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Web", "GiftsSys
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Data.Common", "GiftsSystem.Data.Common\GiftsSystem.Data.Common.csproj", "{69E1CF6C-F69B-4162-9823-BC424008342C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftSystem.Web.Infrastructure", "GiftSystem.Web.Infrastructure\GiftSystem.Web.Infrastructure.csproj", "{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{69E1CF6C-F69B-4162-9823-BC424008342C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69E1CF6C-F69B-4162-9823-BC424008342C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69E1CF6C-F69B-4162-9823-BC424008342C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +54,6 @@ Global
 		{20A46FAE-B370-4427-9A04-8BF5797A50E1} = {95619D06-157E-4523-8EEC-FC6AF208B678}
 		{40D8575C-5337-4B19-A829-CC3C063E12BD} = {855001C6-36D9-43B3-A55B-3C29C882B1A2}
 		{69E1CF6C-F69B-4162-9823-BC424008342C} = {95619D06-157E-4523-8EEC-FC6AF208B678}
+		{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B} = {855001C6-36D9-43B3-A55B-3C29C882B1A2}
 	EndGlobalSection
 EndGlobal
