@@ -12,6 +12,7 @@ namespace GiftsSystem.Data.Migrations
         {
             //TODO:Remove in production
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ApplicationDbContext context)

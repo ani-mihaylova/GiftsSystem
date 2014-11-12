@@ -9,6 +9,16 @@ namespace GiftsSystem.Web.ViewModels.Home
 
     public class CategoryIndexView : IMapFrom<Category>
     {
+        
+        public CategoryIndexView()
+        {
+            this.CategoriesChilderen = new Dictionary<string, List<string>>();
+
+        }
         public string Name { get; set; }
+
+        public Dictionary<string, List<string>> CategoriesChilderen { get; set; }
+
+        public Category ParentCategoryID { get; set; }
     }
 }

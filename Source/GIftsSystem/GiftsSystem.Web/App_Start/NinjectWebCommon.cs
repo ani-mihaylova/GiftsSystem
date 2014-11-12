@@ -11,21 +11,23 @@ namespace GiftsSystem.Web.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using GiftsSystem.Data.Common.Repositories;
+    using GiftsSystem.Models;
+    using GiftSystem.Web.Infrastructure;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -33,7 +35,7 @@ namespace GiftsSystem.Web.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -63,8 +65,14 @@ namespace GiftsSystem.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
-            kernel.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>));
+
+            kernel.Bind(typeof(IGenericRepository<Category>)).To(typeof(DeletableEntityRepository<Category>));
+            
             kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
-        }        
+            
+            kernel.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>));
+           
+             kernel.Bind<ISanitizer>().To<HtmlSanitizerAdapter>();
+        }
     }
 }

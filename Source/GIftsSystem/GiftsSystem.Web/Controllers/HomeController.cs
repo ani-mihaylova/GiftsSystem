@@ -22,8 +22,27 @@ namespace GiftsSystem.Web.Controllers
 
         public ActionResult Index()
         {
-            var all = this.categories.All().Project().To<CategoryIndexView>();
-            return View(all);
+            //TODO:Custom binding
+            var all = this.categories.All();
+            Dictionary<Category, List<Category>> categoriesWithChilderen = new Dictionary<Category, List<Category>>();
+            foreach (var item in all)
+            {
+                if (item.ParentCategoryID==null)
+                {
+                    categoriesWithChilderen.Add(item, new List<Category>());
+                }
+                else
+                {
+                    categoriesWithChilderen[item.ParentCategoryID].Add(item);
+                }
+            }
+
+            //foreach (var item in categoriesWithChilderen)
+            //{
+               
+            //}
+
+            return View(categoriesWithChilderen);
         }
     }
 }
