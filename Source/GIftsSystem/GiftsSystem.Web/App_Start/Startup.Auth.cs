@@ -56,9 +56,9 @@ namespace GiftsSystem.Web
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "823087404423603",
+               appSecret: "d719f3c7ac15c4d0a06b695badbd7f40");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
