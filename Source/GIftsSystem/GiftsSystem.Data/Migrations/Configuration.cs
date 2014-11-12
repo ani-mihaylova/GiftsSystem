@@ -22,6 +22,13 @@ namespace GiftsSystem.Data.Migrations
                 return;
             }
 
+            //context.Users.Add(new ApplicationUser(){
+            //    UserName="Admin",
+            //    
+            //})
+            ApplicationUser admin=new ApplicationUser(){
+                
+            }
             List<Category> categories = new List<Category>()
            {
                new Category(){ Name="Home"},

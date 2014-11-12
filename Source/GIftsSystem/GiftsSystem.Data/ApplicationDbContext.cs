@@ -24,9 +24,9 @@
             return new ApplicationDbContext();
         }
 
-        public IDbSet<Product> Products { get; set; }
+        public virtual IDbSet<Product> Products { get; set; }
 
-        public IDbSet<Category> Categories { get; set; }
+        public virtual IDbSet<Category> Categories { get; set; }
 
         public override int SaveChanges()
         {

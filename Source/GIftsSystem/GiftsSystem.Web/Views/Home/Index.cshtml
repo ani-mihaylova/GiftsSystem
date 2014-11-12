@@ -43,7 +43,7 @@
                 <p>@category.Key.Description
                  
                    @Html.ActionLink(@"ViewDetails", "Details", "Category", new { id = category.Key.ID }, new { });
-                   <a href=@string.Format("Category/Details/id={0}",category.Key.ID)><img src="~/Images/Home.jpg" /></a>
+                   <a href=@string.Format("Category/Details/{0}",category.Key.ID)><img src="~/Images/Home.jpg" /></a>
                 </p>
             </div>
         }
