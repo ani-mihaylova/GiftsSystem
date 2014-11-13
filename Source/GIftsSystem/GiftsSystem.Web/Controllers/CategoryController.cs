@@ -24,6 +24,7 @@ namespace GiftsSystem.Web.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,8 +38,7 @@ namespace GiftsSystem.Web.Controllers
             return View(currentCategory);
         }
 
-        [HttpGet]
-        
+        [HttpGet]        
         public ActionResult Create()
         {
             var newModel = new CreateCategoryView();
@@ -85,5 +85,20 @@ namespace GiftsSystem.Web.Controllers
 
             return this.Redirect("/");
         }
+
+        [HttpGet]
+        public ActionResult Edit(string name)
+        {
+            if (name==null)
+            {
+                return this.View();
+            }
+
+            var categoryToEdit = this.data.Categories.All().Where(c => c.Name == name)
+                .Project().To<CategoryEditView>();
+
+            return this.View(categoryToEdit);
+        }
+
     }
 }

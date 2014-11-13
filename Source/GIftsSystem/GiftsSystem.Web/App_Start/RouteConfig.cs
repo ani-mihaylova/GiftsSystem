@@ -25,9 +25,15 @@ namespace GiftsSystem.Web
                );
 
             routes.MapRoute(
-                name: "Category details",
-                url: "Category/Details/{id}",
-                defaults: new { controller = "Category", action = "Details", id = UrlParameter.Optional }
+               name: "Category details",
+               url: "Category/Details/{id}",
+               defaults: new { controller = "Category", action = "Details", id = UrlParameter.Optional }
+               );
+
+            routes.MapRoute(
+                name: "Edit category",
+                url: "Category/Edit/{name}",
+                defaults: new { controller = "Category", action = "Edit", name = UrlParameter.Optional }
                 );
 
             routes.MapRoute(

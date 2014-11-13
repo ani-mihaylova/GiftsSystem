@@ -208,6 +208,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Category\CategoryDetailsView.cs" />
+    <Compile Include="ViewModels\Category\CategoryEditView.cs" />
     <Compile Include="ViewModels\Category\CreateCategoryView.cs" />
     <Compile Include="ViewModels\Home\CategoryIndexView.cs" />
     <Compile Include="ViewModels\Product\ProductCreateModel.cs" />
@@ -454,6 +455,7 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Manage\_AdditionToManage.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

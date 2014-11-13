@@ -9,29 +9,29 @@
     {
         //if (category.Value.Count == 0)
         //{
-            <li>
-                <a href="#@category.Key.Name" data-toggle="tab">@category.Key.Name</a>
-            </li>
+        <li>
+            <a href="#@category.Key.Name" data-toggle="tab">@category.Key.Name</a>
+        </li>
         @*}
-        else
-        {
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    @category.Key.Name <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    @foreach (var subCategory in category.Value)
-                    {
-                        <li>
-                            <a href="#@subCategory.Name" data-toggle="tab">@subCategory.Name</a>
-                        </li>
-                        <li class="divider"></li>
-                    }
-                </ul>
-            </li>
+            else
+            {
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        @category.Key.Name <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @foreach (var subCategory in category.Value)
+                        {
+                            <li>
+                                <a href="#@subCategory.Name" data-toggle="tab">@subCategory.Name</a>
+                            </li>
+                            <li class="divider"></li>
+                        }
+                    </ul>
+                </li>
 
 
-        }*@
+            }*@
     }
 </ul>
 <div id="myTabContent" class="tab-content">
@@ -39,32 +39,35 @@
     {
         //if (category.Value.Count == 0)
         //{
-            <div class="tab-pane fade" id="@category.Key.Name">
-                <p>@category.Key.Description
-                 <div class="container-fluid">
-                     <ul class="nav nav-pills nav-stacked" style="width: 150px;">
-                         @foreach (var subCategory in category.Value)
-                         { 
-                           <li role="presentation"><a href="@string.Format("Category/Details/{0}",subCategory.ID)">
-                               @subCategory.Name</a>
-                         </li>
-                         }
-                     </ul>
-                 </div>
-                   @*@Html.ActionLink(@"ViewDetails", "Details", "Category", new { id = category.Key.ID }, new { });*@
-                   <a href=@string.Format("Category/Details/{0}",category.Key.ID)><img src="~/Images/Home.jpg" /></a>
-                </p>
+        <div class="tab-pane fade" id="@category.Key.Name">
+            <p>
+                @category.Key.Description
+            <div class="container-fluid">
+                <ul class="nav nav-pills nav-stacked" style="width:100px;display:inline">
+                    @foreach (var subCategory in category.Value)
+                    {
+                        <li role="presentation" style="width:100px">
+                            <a href="@string.Format("Category/Details/{0}",subCategory.ID)">
+                                @subCategory.Name
+                            </a>
+                        </li>
+                    }
+                </ul>
             </div>
+            @*@Html.ActionLink(@"ViewDetails", "Details", "Category", new { id = category.Key.ID }, new { });*@
+            <a href=@string.Format("Category/Details/{0}",category.Key.ID)><img src="~/Images/Home.jpg" /></a>
+        </p>
+    </div>
         @*}
-        else
-        {
-            foreach (var subCategory in category.Value)
+            else
             {
-                <div class="tab-pane fade" id="@subCategory.Name">
-                    <p>@subCategory.Description</p>
-                </div>
-            }
-        }*@
+                foreach (var subCategory in category.Value)
+                {
+                    <div class="tab-pane fade" id="@subCategory.Name">
+                        <p>@subCategory.Description</p>
+                    </div>
+                }
+            }*@
     }
 </div>
 
