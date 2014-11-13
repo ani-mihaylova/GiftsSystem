@@ -28,7 +28,7 @@
             <div class="col-lg-10">
 
                 @*@Html.Action("GetDropdown", "Category")*@
-                @Html.DropDownListFor(model => model.ParentCategoryID, ViewBag.CategoriesForDr as List<SelectListItem>)
+                @Html.DropDownListFor(model => model.ParentCategoryID, ViewBag.CategoriesForDr as List<SelectListItem>, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">

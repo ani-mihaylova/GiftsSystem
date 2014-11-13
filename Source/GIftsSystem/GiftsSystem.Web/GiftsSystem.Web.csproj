@@ -452,11 +452,13 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
-    <Content Include="Views\User\_AdditionToManage.cshtml" />
+    <Content Include="Views\Manage\_AdditionToManage.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

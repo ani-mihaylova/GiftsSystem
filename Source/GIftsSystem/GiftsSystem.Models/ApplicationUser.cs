@@ -29,7 +29,7 @@
             return userIdentity;
         }
 
-        public ICollection<Product> WishList { get; set; }
+        public virtual ICollection<Product> WishList { get; set; }
 
         //public ICollection<Product> BoughtProducts { get; set; }
 

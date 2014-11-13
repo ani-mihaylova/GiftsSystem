@@ -8,7 +8,7 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <fieldset>
-        <legend>@ViewBag.Title</legend>
+        <legend>Create Product</legend>
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
@@ -26,7 +26,7 @@
             <div class="col-lg-10">
 
                 @*@Html.Action("GetDropdown", "Category")*@
-                @Html.DropDownListFor(model => model.CategoryId, ViewBag.CategoriesForDr as List<SelectListItem>)
+                @Html.DropDownListFor(model => model.CategoryId, ViewBag.CategoriesForDr as List<SelectListItem>, new { @class="form-control" })
             </div>
         </div>
         <div class="form-group">
@@ -48,9 +48,9 @@
             </div>
         </div>
         <div class="form-group">
-            @*@Html.LabelFor(model => model.Image, new { @class = "col-lg-2 control-label" })*@
+            @Html.LabelFor(model => model.Image, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                <input name="image" type="file" class="form-control input-lg" />
+                <input name="image" type="file" class="form-control" />
             </div>
         </div>
         <div class="form-group">
