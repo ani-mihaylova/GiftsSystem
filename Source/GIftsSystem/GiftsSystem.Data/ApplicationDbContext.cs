@@ -11,7 +11,7 @@
     using GiftsSystem.Data.Migrations;
     using GiftsSystem.Data.Common;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext()
             : base("GiftsSystem", throwIfV1Schema: false)
@@ -31,7 +31,24 @@
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
+            this.ApplyDeletableEntityRules();
             return base.SaveChanges();
+        }
+
+        private void ApplyDeletableEntityRules()
+        {
+            // Approach via @julielerman: http://bit.ly/123661P
+            foreach (
+                var entry in
+                    this.ChangeTracker.Entries()
+                        .Where(e => e.Entity is IDeletableEntity && (e.State == EntityState.Deleted)))
+            {
+                var entity = (IDeletableEntity)entry.Entity;
+
+                entity.DeletedOn = DateTime.Now;
+                entity.IsDeleted = true;
+                entry.State = EntityState.Modified;
+            }
         }
 
         private void ApplyAuditInfoRules()
@@ -57,6 +74,18 @@
                     entity.ModifiedOn = DateTime.Now;
                 }
             }
-        }      
+        }
+
+
+        public new DbContext DbContext
+        {
+            get { return this; }
+        }
+
+        public new IDbSet<T> Set<T>() where T : class
+        {
+            return base.Set<T>();
+        }
+
     }
 }

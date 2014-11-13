@@ -26,9 +26,9 @@ namespace GiftsSystem.Data.Migrations
             //    UserName="Admin",
             //    
             //})
-            ApplicationUser admin=new ApplicationUser(){
+            //ApplicationUser admin=new ApplicationUser(){
                 
-            }
+            //}
             List<Category> categories = new List<Category>()
            {
                new Category(){ Name="Home"},

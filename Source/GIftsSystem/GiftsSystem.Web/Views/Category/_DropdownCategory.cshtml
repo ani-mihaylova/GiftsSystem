@@ -1,1 +1,14 @@
-﻿
+﻿@model IEnumerable<GiftsSystem.Models.Category>
+           @{
+               var categoryNames = new List<SelectListItem>();
+           }
+@foreach (var item in Model)
+{
+    categoryNames.Add(new SelectListItem()
+    {
+        Text = item.Name,
+        Value = item.ID.ToString()
+    });
+}
+
+@Html.DropDownList("Categories",categoryNames)

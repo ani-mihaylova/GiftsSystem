@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GiftsSystem.Data.Common.Repositories;
 using GiftsSystem.Models;
 using AutoMapper.QueryableExtensions;
 using GiftsSystem.Web.ViewModels.Category;
+using GiftsSystem.Data.Repositories;
+using GiftsSystem.Data;
 
 namespace GiftsSystem.Web.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
-        private IGenericRepository<Category> categories;
-
-        public CategoryController(IGenericRepository<Category> categories)
+        public CategoryController(IGiftsSystemData data)
+            : base(data)
         {
-            this.categories = categories;
-        }
 
+        }
         // GET: Category
         public ActionResult Index()
         {
@@ -27,12 +26,12 @@ namespace GiftsSystem.Web.Controllers
 
         public ActionResult Details(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return Redirect("/Home");
             }
 
-            var currentCategory=this.categories.All().Where(c=>c.ID==id)
+            var currentCategory = this.data.Categories.All().Where(c => c.ID == id)
                 .Project().To<CategoryDetailsView>().FirstOrDefault();
 
             return View(currentCategory);
@@ -43,15 +42,47 @@ namespace GiftsSystem.Web.Controllers
         public ActionResult Create()
         {
             var newModel = new CreateCategoryView();
-
+            var categoriesSelection = new List<SelectListItem>();
+            foreach (var item in this.data.Categories.All())
+            {
+                categoriesSelection.Add(new SelectListItem()
+                {
+                    Text = item.Name,
+                    Value = item.ID.ToString()
+                });
+            }
+            ViewBag.CategoriesForDr = categoriesSelection;
             return this.View(newModel);
         }
 
-
-        //[HttpPost]
-        //public ActionResult Create()
+        //public PartialViewResult GetDropdown()
         //{
+        //    var allCategory = this.categories.All().ToList();
 
+        //    return PartialView("_DropdownCategory", allCategory);
         //}
+
+        [HttpPost]
+        public ActionResult Create(CreateCategoryView newCategory)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.View(newCategory);
+            }
+
+            var parentCategory = this.data.Categories.GetById(newCategory.ParentCategoryID);
+            var category = new Category()
+            {
+                Name = newCategory.Name,
+                Description = newCategory.Description,
+                CreatedOn = DateTime.Now,
+                ParentCategoryID = parentCategory
+            };
+
+            this.data.Categories.Add(category);
+            this.data.SaveChanges();
+
+            return this.Redirect("/");
+        }
     }
 }

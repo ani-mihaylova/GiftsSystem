@@ -10,9 +10,10 @@ namespace GiftsSystem.Web.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
-    using GiftsSystem.Data.Common.Repositories;
+  
     using GiftsSystem.Models;
     using GiftSystem.Web.Infrastructure;
+    using GiftsSystem.Data.Repositories;
 
     public static class NinjectWebCommon
     {
@@ -65,6 +66,8 @@ namespace GiftsSystem.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
+            kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>();
+            kernel.Bind<IGiftsSystemData>().To<GiftsSystemData>();
 
             kernel.Bind(typeof(IGenericRepository<Category>)).To(typeof(DeletableEntityRepository<Category>));
             

@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{855001C6-36D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Data", "GiftsSystem.Data\GiftsSystem.Data.csproj", "{92C3E5F1-5B92-4E2C-A797-F9946A57C5CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Data.Models", "GiftsSystem.Models\GiftsSystem.Data.Models.csproj", "{20A46FAE-B370-4427-9A04-8BF5797A50E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Models", "GiftsSystem.Models\GiftsSystem.Models.csproj", "{20A46FAE-B370-4427-9A04-8BF5797A50E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Web", "GiftsSystem.Web\GiftsSystem.Web.csproj", "{40D8575C-5337-4B19-A829-CC3C063E12BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Data.Common", "GiftsSystem.Data.Common\GiftsSystem.Data.Common.csproj", "{69E1CF6C-F69B-4162-9823-BC424008342C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Common", "GiftsSystem.Data.Common\GiftsSystem.Common.csproj", "{69E1CF6C-F69B-4162-9823-BC424008342C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftSystem.Web.Infrastructure", "GiftSystem.Web.Infrastructure\GiftSystem.Web.Infrastructure.csproj", "{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}"
 EndProject
