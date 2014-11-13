@@ -13,6 +13,17 @@ namespace GiftsSystem.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //  name: "Add products to category",
+            //  url: "Category/Details/{id}/Product/Create",
+            //  defaults: new { controller = "Product", action = "Create", id = UrlParameter.Optional }
+            //  );
+            routes.MapRoute(
+               name: "Add products to category",
+               url: "Product/Create/{name}",
+               defaults: new { controller = "Product", action = "Create", id = UrlParameter.Optional }
+               );
+
             routes.MapRoute(
                 name: "Category details",
                 url: "Category/Details/{id}",

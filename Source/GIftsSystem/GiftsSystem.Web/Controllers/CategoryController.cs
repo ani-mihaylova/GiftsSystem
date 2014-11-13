@@ -38,7 +38,7 @@ namespace GiftsSystem.Web.Controllers
         }
 
         [HttpGet]
-        //[ValidateAntiForgeryToken]
+        
         public ActionResult Create()
         {
             var newModel = new CreateCategoryView();
@@ -63,6 +63,7 @@ namespace GiftsSystem.Web.Controllers
         //}
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CreateCategoryView newCategory)
         {
             if (!ModelState.IsValid)

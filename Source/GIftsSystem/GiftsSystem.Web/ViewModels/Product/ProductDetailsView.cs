@@ -2,33 +2,26 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web;
+    using GiftSystem.Web.Infrastructure.Mapping;
 
-    public class ProductCreateModel
+    public class ProductDetailsView : IMapFrom<GiftsSystem.Models.Product>
     {
-        [Required]
         public string Name { get; set; }
 
-        [Required]
         public string Description { get; set; }
 
-        [Required]
-        [DataType(DataType.Duration)]
+        public string Condition { get; set; }
+
         public DateTime ExpirationDate { get; set; }
 
-        [Required]
         public int Quantity { get; set; }
 
-        //TODO:Custom validation for future date
-        [Required]  
-        [DataType(DataType.Currency)]
         public int Price { get; set; }
 
-        [Required]
-        public int CategoryId { get; set; }
-
         public byte[] Image { get; set; }
+
+        public virtual GiftsSystem.Models.Category CategoryID { get; set; }
     }
 }

@@ -7,14 +7,15 @@
     <h1>@Model.Name</h1>
     <p>@Model.Description</p>
     <p><a class="btn btn-primary btn-lg">Learn more</a></p>
-    <p><a class="btn btn-primary btn-lg">Add products</a></p>
+    <p><a href="@string.Format("/Product/Create/{0}",Model.Name)" class="btn btn-primary btn-lg">Add products</a></p>
 </div>
 <div class="row">
     <div class="col-md-4">
         <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
             @foreach (var product in Model.Products)
             {
-                <li role="presentation"><a href="#">@product.Name</a></li>
+                <li role="presentation"><a href="@string.Format("/Product/Details/{0}",product.ID)">
+                    @product.Name</a></li>
             }
             @*<li role="presentation" class="active"><a href="#">Home</a></li>
             <li role="presentation"><a href="#">Profile</a></li>

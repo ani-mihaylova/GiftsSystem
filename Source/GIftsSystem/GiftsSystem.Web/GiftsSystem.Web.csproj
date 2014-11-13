@@ -210,6 +210,7 @@
     <Compile Include="ViewModels\Category\CreateCategoryView.cs" />
     <Compile Include="ViewModels\Home\CategoryIndexView.cs" />
     <Compile Include="ViewModels\Product\ProductCreateModel.cs" />
+    <Compile Include="ViewModels\Product\ProductDetailsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -448,6 +449,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
