@@ -11,7 +11,13 @@ namespace GiftsSystem.Web.Controllers
     {
         protected IGiftsSystemData data;
 
+        public BaseController()
+        {
+
+        }
+
         public BaseController(IGiftsSystemData data)
+            : this()
         {
             this.data = data;
         }

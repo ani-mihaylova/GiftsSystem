@@ -17,6 +17,8 @@
         {
             // This will prevent UserManager.CreateAsync from causing exception
             this.CreatedOn = DateTime.Now;
+            this.WishList = new HashSet<Product>();
+            this.ImagePath = "~/Images/default-user-image.png";
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -26,6 +28,15 @@
             // Add custom user claims here
             return userIdentity;
         }
+
+        public ICollection<Product> WishList { get; set; }
+
+        //public ICollection<Product> BoughtProducts { get; set; }
+
+        public string ImagePath { get; set; }
+
+        //TODO:Make multiple collections
+        //public ICollection<Product> PersonalCollection { get; set; }
 
         [Index]
         public bool IsDeleted { get; set; }

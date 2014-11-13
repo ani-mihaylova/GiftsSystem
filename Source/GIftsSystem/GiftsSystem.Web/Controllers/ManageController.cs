@@ -8,14 +8,21 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GiftsSystem.Web.Models;
 using GiftsSystem.Models;
+using GiftsSystem.Data;
 
 namespace GiftsSystem.Web.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         public ManageController()
         {
+        }
+
+        public ManageController(IGiftsSystemData data)
+            : base(data)
+        {
+
         }
 
         public ManageController(ApplicationUserManager userManager)
@@ -24,6 +31,7 @@ namespace GiftsSystem.Web.Controllers
         }
 
         private ApplicationUserManager _userManager;
+
         public ApplicationUserManager UserManager
         {
             get
@@ -312,7 +320,7 @@ namespace GiftsSystem.Web.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -369,6 +377,6 @@ namespace GiftsSystem.Web.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

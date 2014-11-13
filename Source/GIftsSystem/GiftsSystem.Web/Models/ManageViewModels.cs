@@ -1,17 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using GiftsSystem.Models;
+using GiftSystem.Web.Infrastructure.Mapping;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
 namespace GiftsSystem.Web.Models
 {
-    public class IndexViewModel
+    public class IndexViewModel:IMapFrom<ApplicationUser>
     {
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+
+        public string ImagePath { get; set; }
+
+        public ICollection<Product> WishList { get; set; }
     }
 
     public class ManageLoginsViewModel
