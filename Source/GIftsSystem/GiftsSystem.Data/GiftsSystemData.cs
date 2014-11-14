@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using GiftsSystem.Data.Common;
+    using GiftsSystem.Data.Contracts;
     using GiftsSystem.Data.Repositories;
     using GiftsSystem.Models;
 

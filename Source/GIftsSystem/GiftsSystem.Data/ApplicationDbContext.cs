@@ -11,6 +11,7 @@
     using GiftsSystem.Data.Migrations;
     using GiftsSystem.Data.Common;
     using GiftsSystem.Data.Common.CodeFirstConventions;
+    using GiftsSystem.Data.Contracts;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
