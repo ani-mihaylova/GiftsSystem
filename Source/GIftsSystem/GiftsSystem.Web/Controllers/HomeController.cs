@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using GiftsSystem.Data;
-using GiftsSystem.Models;
-using AutoMapper.QueryableExtensions;
-using GiftsSystem.Web.ViewModels.Home;
-using GiftsSystem.Data.Repositories;
-
-namespace GiftsSystem.Web.Controllers
+﻿namespace GiftsSystem.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Web.Mvc;
+    using GiftsSystem.Data;
+    using GiftsSystem.Models;
+
     public class HomeController : BaseController
     {
         public HomeController(IGiftsSystemData data)
@@ -30,7 +24,7 @@ namespace GiftsSystem.Web.Controllers
                     categoriesWithChilderen.Add(item, new List<Category>());
                 }
                 else
-                {
+                {                   
                     categoriesWithChilderen[item.ParentCategoryID].Add(item);
                 }
             }

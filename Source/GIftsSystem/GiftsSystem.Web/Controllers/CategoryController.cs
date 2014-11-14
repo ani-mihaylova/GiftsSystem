@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using GiftsSystem.Models;
-using AutoMapper.QueryableExtensions;
-using GiftsSystem.Web.ViewModels.Category;
-using GiftsSystem.Data.Repositories;
-using GiftsSystem.Data;
-
-namespace GiftsSystem.Web.Controllers
+﻿namespace GiftsSystem.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using AutoMapper.QueryableExtensions;
+    using GiftsSystem.Data;
+    using GiftsSystem.Models;
+    using GiftsSystem.Web.ViewModels.Category;
+
     public class CategoryController : BaseController
     {
         public CategoryController(IGiftsSystemData data)
@@ -21,7 +19,7 @@ namespace GiftsSystem.Web.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            return View();
+            return View("/");
         }
 
         [HttpGet]
@@ -29,11 +27,11 @@ namespace GiftsSystem.Web.Controllers
         {
             if (id == null)
             {
-                return Redirect("/Home");
+                return Redirect("/");
             }
 
             var currentCategory = this.data.Categories.All().Where(c => c.ID == id)
-                .Project().To<CategoryDetailsView>().FirstOrDefault();
+                .Project().To<DetailsCategoryViewModel>().FirstOrDefault();
 
             return View(currentCategory);
         }
@@ -41,7 +39,7 @@ namespace GiftsSystem.Web.Controllers
         [HttpGet]        
         public ActionResult Create()
         {
-            var newModel = new CreateCategoryView();
+            var newModel = new CreateCategoryViewModel();
             var categoriesSelection = new List<SelectListItem>();
             foreach (var item in this.data.Categories.All())
             {
@@ -64,7 +62,7 @@ namespace GiftsSystem.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateCategoryView newCategory)
+        public ActionResult Create(CreateCategoryViewModel newCategory)
         {
             if (!ModelState.IsValid)
             {
@@ -77,7 +75,8 @@ namespace GiftsSystem.Web.Controllers
                 Name = newCategory.Name,
                 Description = newCategory.Description,
                 CreatedOn = DateTime.Now,
-                ParentCategoryID = parentCategory
+                ParentCategoryID = parentCategory,
+                Products=new List<Product>()
             };
 
             this.data.Categories.Add(category);
@@ -91,14 +90,31 @@ namespace GiftsSystem.Web.Controllers
         {
             if (name==null)
             {
-                return this.View();
+                return this.Redirect("/");
             }
 
             var categoryToEdit = this.data.Categories.All().Where(c => c.Name == name)
-                .Project().To<CategoryEditView>();
+                .Project().To<EditCategoryViewModel>().FirstOrDefault();
 
-            return this.View(categoryToEdit);
+            return this.View("Edit", categoryToEdit);
         }
+
+        //[HttpPost]
+        //public ActionResult Edit(EditCategoryViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        this.data.Categories.UpdateValues({
+
+        //    });
+        //        this.data.SaveChanges();
+        //        var categoryId=this.data.Categories.GetById(model.ID);
+
+        //        return this.RedirectToAction("Details", new { id = categoryId });
+        //    }
+
+        //    return this.View(model);
+        //}
 
     }
 }

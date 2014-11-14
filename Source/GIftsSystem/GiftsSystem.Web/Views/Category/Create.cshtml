@@ -1,4 +1,4 @@
-﻿@model GiftsSystem.Web.ViewModels.Category.CreateCategoryView
+﻿@model GiftsSystem.Web.ViewModels.Category.CreateCategoryViewModel
            @using System.Collections
 @{
     ViewBag.Title = "Create";
@@ -10,7 +10,7 @@
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <fieldset>
-        <legend>@ViewBag.Title</legend>
+        <legend>Create Category</legend>
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">

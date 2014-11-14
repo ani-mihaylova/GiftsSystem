@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Web;
 
-    public class ProductCreateModel
+    public class CreateProductViewModel
     {
         [Required]
         public string Name { get; set; }

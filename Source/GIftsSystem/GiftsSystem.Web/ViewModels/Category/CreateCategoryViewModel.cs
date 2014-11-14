@@ -8,7 +8,7 @@ using GiftSystem.Web.Infrastructure.Mapping;
 
 namespace GiftsSystem.Web.ViewModels.Category
 {
-    public class CreateCategoryView:IMapFrom<GiftsSystem.Models.Category>
+    public class CreateCategoryViewModel:IMapFrom<GiftsSystem.Models.Category>
     {
         [Required]
         public string Name { get; set; }

@@ -7,7 +7,7 @@ using GiftsSystem.Models;
 
 namespace GiftsSystem.Web.ViewModels.Category
 {
-    public class CategoryDetailsView:IMapFrom<GiftsSystem.Models.Category>
+    public class DetailsCategoryViewModel:IMapFrom<GiftsSystem.Models.Category>
     {
         public string Name { get; set; }
 

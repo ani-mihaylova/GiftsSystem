@@ -1,17 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using GiftsSystem.Web.Models;
-using GiftsSystem.Models;
-using GiftsSystem.Data;
-
-namespace GiftsSystem.Web.Controllers
+﻿namespace GiftsSystem.Web.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+    using GiftsSystem.Web.Models;
+    using GiftsSystem.Models;
+    using GiftsSystem.Data;
+
     [Authorize]
     public class ManageController : BaseController
     {

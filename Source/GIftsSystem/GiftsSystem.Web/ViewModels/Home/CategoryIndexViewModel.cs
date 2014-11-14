@@ -7,10 +7,10 @@ namespace GiftsSystem.Web.ViewModels.Home
     using GiftsSystem.Models;
     using GiftSystem.Web.Infrastructure.Mapping;
 
-    public class CategoryIndexView : IMapFrom<Category>
+    public class CategoryIndexViewModel : IMapFrom<Category>
     {
         
-        public CategoryIndexView()
+        public CategoryIndexViewModel()
         {
             this.CategoriesChilderen = new Dictionary<string, List<string>>();
 

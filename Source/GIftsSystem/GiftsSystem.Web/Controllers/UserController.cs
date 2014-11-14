@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using GiftsSystem.Data;
-using GiftsSystem.Web.Models;
-using Microsoft.AspNet.Identity;
-
-namespace GiftsSystem.Web.Controllers
+﻿namespace GiftsSystem.Web.Controllers
 {
+    using System.Web.Mvc;
+    using GiftsSystem.Data;
+
     public class UserController : BaseController
     {
         public UserController(IGiftsSystemData data)

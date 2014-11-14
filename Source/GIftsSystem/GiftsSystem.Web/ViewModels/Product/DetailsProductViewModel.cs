@@ -7,7 +7,7 @@
     using System.Web.Mvc;
     using GiftSystem.Web.Infrastructure.Mapping;
 
-    public class ProductDetailsView : IMapFrom<GiftsSystem.Models.Product>
+    public class DetailsProductViewModel : IMapFrom<GiftsSystem.Models.Product>
     {
         [HiddenInput(DisplayValue=false)]
         public int ID { get; set; }

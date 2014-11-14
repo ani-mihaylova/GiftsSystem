@@ -194,6 +194,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -208,12 +210,12 @@
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\Category\CategoryDetailsView.cs" />
-    <Compile Include="ViewModels\Category\CategoryEditView.cs" />
-    <Compile Include="ViewModels\Category\CreateCategoryView.cs" />
-    <Compile Include="ViewModels\Home\CategoryIndexView.cs" />
-    <Compile Include="ViewModels\Product\ProductCreateModel.cs" />
-    <Compile Include="ViewModels\Product\ProductDetailsView.cs" />
+    <Compile Include="ViewModels\Category\DetailsCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Category\EditCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Category\CreateCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Home\CategoryIndexViewModel.cs" />
+    <Compile Include="ViewModels\Product\CreateProductViewModel.cs" />
+    <Compile Include="ViewModels\Product\DetailsProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -232,6 +234,10 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Company\Views\web.config" />
+    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administration\Views\Admin\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\default-user-image.png" />
     <Content Include="Images\Home.jpg" />
@@ -461,9 +467,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Controllers\" />
-    <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Areas\Administration\ViewModels\" />
+    <Folder Include="Areas\Company\Controllers\" />
+    <Folder Include="Areas\Company\Models\" />
+    <Folder Include="Areas\Company\Views\Shared\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
