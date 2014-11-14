@@ -10,6 +10,7 @@
     using System.Data.Entity;
     using GiftsSystem.Data.Migrations;
     using GiftsSystem.Data.Common;
+    using GiftsSystem.Data.Common.CodeFirstConventions;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
@@ -34,6 +35,29 @@
             this.ApplyDeletableEntityRules();
             return base.SaveChanges();
         }
+
+        public new DbContext DbContext
+        {
+            get { return this; }
+        }
+
+        public new IDbSet<T> Set<T>() where T : class
+        {
+            return base.Set<T>();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Add(new IsUnicodeAttributeConvention());
+
+            base.OnModelCreating(modelBuilder); // Without this call EntityFramework won't be able to configure the identity model
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
+
 
         private void ApplyDeletableEntityRules()
         {
@@ -74,17 +98,6 @@
                     entity.ModifiedOn = DateTime.Now;
                 }
             }
-        }
-
-
-        public new DbContext DbContext
-        {
-            get { return this; }
-        }
-
-        public new IDbSet<T> Set<T>() where T : class
-        {
-            return base.Set<T>();
         }
 
     }

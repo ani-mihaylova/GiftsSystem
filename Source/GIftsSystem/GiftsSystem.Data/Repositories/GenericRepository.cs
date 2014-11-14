@@ -35,7 +35,7 @@
             return this.DbSet.AsQueryable();
         }
 
-        public virtual T GetById(int id)
+        public virtual T GetById(object id)
         {
             return this.DbSet.Find(id);
         }
@@ -98,11 +98,6 @@
         public int SaveChanges()
         {
             return this.Context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            this.Context.Dispose();
         }
 
         /// <summary>
@@ -184,6 +179,11 @@
                 .FirstOrDefault(prop => Attribute.IsDefined(prop, typeof(KeyAttribute)));
 
             return (int)property.GetValue(myObject, null);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
