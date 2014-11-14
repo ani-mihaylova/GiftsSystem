@@ -4,8 +4,8 @@
 }
 
 <div class="jumbotron">
-    <h1>@Model.Name</h1>
-    <p>@Model.Description</p>
+    <h1>@Model.Name</h1>    
+    @Html.Raw(Model.Description)
     <p><a class="btn btn-primary btn-lg">Learn more</a></p>
     @*<p><a href="@string.Format("/Product/Create?categoryName={0}",Model.Name)" class="btn btn-primary btn-lg">Add products</a></p>*@
     <p><a href="@string.Format("/Category/Edit/{0}",Model.Name)" class="btn btn-primary btn-lg">Edit category</a></p>

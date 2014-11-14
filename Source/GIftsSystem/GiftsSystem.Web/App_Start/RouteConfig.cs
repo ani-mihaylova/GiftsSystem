@@ -21,25 +21,30 @@ namespace GiftsSystem.Web
             routes.MapRoute(
                name: "Add products to category",
                url: "Product/Create/",
-               defaults: new { controller = "Product", action = "Create" }
+               defaults: new { controller = "Product", action = "Create" },
+               namespaces: new[] { "GiftsSystem.Web.Controllers" }
                );
 
             routes.MapRoute(
                name: "Category details",
                url: "Category/Details/{id}",
-               defaults: new { controller = "Category", action = "Details", id = UrlParameter.Optional }
+               defaults: new { controller = "Category", action = "Details", id = UrlParameter.Optional },
+                namespaces: new[] { "GiftsSystem.Web.Controllers" }
                );
 
             routes.MapRoute(
                 name: "Edit category",
                 url: "Category/Edit/{name}",
-                defaults: new { controller = "Category", action = "Edit", name = UrlParameter.Optional }
+                defaults: new { controller = "Category", action = "Edit", name = UrlParameter.Optional },
+                namespaces: new[] { "GiftsSystem.Web.Controllers" }
+
                 );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                 namespaces: new[] { "GiftsSystem.Web.Controllers" }
             );
         }
     }

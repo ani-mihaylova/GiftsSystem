@@ -2,6 +2,8 @@
 {
     using System.Web.Mvc;
     using GiftsSystem.Data;
+    using GiftsSystem.Models;
+    using Microsoft.AspNet.Identity;
 
     public class BaseController : Controller
     {
@@ -16,5 +18,8 @@
         {
             this.data = data;
         }
+
+        protected ApplicationUser CurrentUser { get; set; }
+       
     }
 }

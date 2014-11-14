@@ -4,12 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace GiftsSystem.Web.Areas.Administration.Controllers
+namespace GiftsSystem.Web.Areas.Company.Controllers
 {
-    [Authorize(Roles="Admin")]
-    public class AdminController : Controller
+    public class ProductController : Controller
     {
-        // GET: Administration/Admin
+        // GET: Company/Product
         public ActionResult Index()
         {
             return View();

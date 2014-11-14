@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using GiftSystem.Web.Infrastructure.Mapping;
 using GiftsSystem.Models;
+using System.Web.Mvc;
 
 namespace GiftsSystem.Web.ViewModels.Category
 {
@@ -11,6 +12,7 @@ namespace GiftsSystem.Web.ViewModels.Category
     {
         public string Name { get; set; }
 
+        [AllowHtml]
         public string Description { get; set; }
 
         public ICollection<GiftsSystem.Models.Product> Products { get; set; }
