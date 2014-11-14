@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{95619D06-157E-4523-8EEC-FC6AF208B678}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{ECCAF7D1-4C8A-48A5-A65D-B43D0F46A745}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{ECCAF7D1-4C8A-48A5-A65D-B43D0F46A745}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{855001C6-36D9-43B3-A55B-3C29C882B1A2}"
 EndProject
@@ -15,9 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Models", "Gifts
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Web", "GiftsSystem.Web\GiftsSystem.Web.csproj", "{40D8575C-5337-4B19-A829-CC3C063E12BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Common", "GiftsSystem.Data.Common\GiftsSystem.Common.csproj", "{69E1CF6C-F69B-4162-9823-BC424008342C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Contracts", "GiftsSystem.Data.Common\GiftsSystem.Contracts.csproj", "{69E1CF6C-F69B-4162-9823-BC424008342C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftSystem.Web.Infrastructure", "GiftSystem.Web.Infrastructure\GiftSystem.Web.Infrastructure.csproj", "{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Common", "GiftsSystem.Common\GiftsSystem.Common.csproj", "{B0390894-E301-43EC-87DD-34C7CEC622AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0390894-E301-43EC-87DD-34C7CEC622AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0390894-E301-43EC-87DD-34C7CEC622AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0390894-E301-43EC-87DD-34C7CEC622AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0390894-E301-43EC-87DD-34C7CEC622AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +61,6 @@ Global
 		{40D8575C-5337-4B19-A829-CC3C063E12BD} = {855001C6-36D9-43B3-A55B-3C29C882B1A2}
 		{69E1CF6C-F69B-4162-9823-BC424008342C} = {95619D06-157E-4523-8EEC-FC6AF208B678}
 		{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B} = {855001C6-36D9-43B3-A55B-3C29C882B1A2}
+		{B0390894-E301-43EC-87DD-34C7CEC622AF} = {ECCAF7D1-4C8A-48A5-A65D-B43D0F46A745}
 	EndGlobalSection
 EndGlobal

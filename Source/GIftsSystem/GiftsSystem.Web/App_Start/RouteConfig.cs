@@ -20,8 +20,8 @@ namespace GiftsSystem.Web
             //  );
             routes.MapRoute(
                name: "Add products to category",
-               url: "Product/Create/{name}",
-               defaults: new { controller = "Product", action = "Create", id = UrlParameter.Optional }
+               url: "Product/Create/",
+               defaults: new { controller = "Product", action = "Create" }
                );
 
             routes.MapRoute(

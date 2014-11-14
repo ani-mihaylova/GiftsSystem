@@ -467,9 +467,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GiftsSystem.Data.Common\GiftsSystem.Common.csproj">
+    <ProjectReference Include="..\GiftsSystem.Data.Common\GiftsSystem.Contracts.csproj">
       <Project>{69e1cf6c-f69b-4162-9823-bc424008342c}</Project>
-      <Name>GiftsSystem.Common</Name>
+      <Name>GiftsSystem.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\GiftsSystem.Data\GiftsSystem.Data.csproj">
       <Project>{92c3e5f1-5b92-4e2c-a797-f9946a57c5cd}</Project>
