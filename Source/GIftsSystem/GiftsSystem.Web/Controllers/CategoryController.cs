@@ -36,6 +36,7 @@
             return View(currentCategory);
         }
 
+        [Authorize(Roles = "Company")]
         [HttpGet]        
         public ActionResult Create()
         {
@@ -60,6 +61,8 @@
         //    return PartialView("_DropdownCategory", allCategory);
         //}
 
+
+        [Authorize(Roles = "Company")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateCategoryViewModel newCategory)
@@ -85,6 +88,7 @@
             return this.Redirect("/");
         }
 
+        [Authorize(Roles="Company")]
         [HttpGet]
         public ActionResult Edit(string name)
         {

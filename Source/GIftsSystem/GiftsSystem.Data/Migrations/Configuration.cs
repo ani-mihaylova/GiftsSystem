@@ -1,13 +1,14 @@
 namespace GiftsSystem.Data.Migrations
 {
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
     using GiftsSystem.Models;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
-
         public Configuration()
         {
             //TODO:Remove in production
@@ -17,18 +18,31 @@ namespace GiftsSystem.Data.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
+            //Add Admin
+            this.SeedAdmin(context);
+
+            //Add Catagories
+            this.SeedCatagories(context);
+            context.SaveChanges();
+            this.SeedSubCategories(context);
+            context.SaveChanges();
+           
+        }
+
+        private void SeedAdmin(ApplicationDbContext context)
+        {
+            var sole = "f0cae20b-70c6-469d-907b-44c62532e06f";
+            var role = new IdentityRole("Admin");
+            
+            context.Roles.Add(role);
+        }
+
+        private void SeedCatagories(ApplicationDbContext context)
+        {
             if (context.Categories.Count() != 0)
             {
                 return;
             }
-
-            //context.Users.Add(new ApplicationUser(){
-            //    UserName="Admin",
-            //    
-            //})
-            //ApplicationUser admin=new ApplicationUser(){
-                
-            //}
 
             List<Category> categories = new List<Category>()
            {
@@ -44,10 +58,12 @@ namespace GiftsSystem.Data.Migrations
             {
                 context.Categories.Add(item);
             }
-            context.SaveChanges();
+        }
 
-          var fashoinCategory=context.Categories.FirstOrDefault(c=>c.Name=="Fashion");
-            var homeCategoryId=context.Categories.FirstOrDefault(c=>c.Name=="Home");
+        private void SeedSubCategories(ApplicationDbContext context)
+        {
+            var fashoinCategory = context.Categories.FirstOrDefault(c => c.Name == "Fashion");
+            var homeCategoryId = context.Categories.FirstOrDefault(c => c.Name == "Home");
 
             List<Category> subCategories = new List<Category>()
             {
@@ -63,8 +79,6 @@ namespace GiftsSystem.Data.Migrations
             {
                 context.Categories.Add(item);
             }
-
-            context.SaveChanges();
         }
     }
 }
