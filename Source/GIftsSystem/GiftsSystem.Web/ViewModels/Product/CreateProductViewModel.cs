@@ -16,15 +16,15 @@
 
         [Required]
         [DataType(DataType.Duration)]
+        //TODO:Custom validation for future date
         public DateTime ExpirationDate { get; set; }
 
         [Required]
         public int Quantity { get; set; }
 
-        //TODO:Custom validation for future date
+       
         [Required]  
-        [DataType(DataType.Currency)]
-        public int Price { get; set; }
+        public double Price { get; set; }
 
         [Required]
         public int CategoryId { get; set; }

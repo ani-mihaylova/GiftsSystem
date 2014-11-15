@@ -9,13 +9,14 @@ using GiftsSystem.Models;
 
 namespace GiftsSystem.Data
 {
-   public interface IApplicationDbContext
+    public interface IApplicationDbContext
     {
         IDbSet<ApplicationUser> Users { get; set; }
 
         IDbSet<Product> Products { get; set; }
 
         IDbSet<Category> Categories { get; set; }
+
 
         DbContext DbContext { get; }
 

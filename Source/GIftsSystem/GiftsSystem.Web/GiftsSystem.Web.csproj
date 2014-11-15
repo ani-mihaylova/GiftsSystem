@@ -198,6 +198,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Company\Controllers\ProductController.cs" />
@@ -224,6 +225,8 @@
     <Compile Include="ViewModels\Home\CategoryIndexViewModel.cs" />
     <Compile Include="ViewModels\Product\CreateProductViewModel.cs" />
     <Compile Include="ViewModels\Product\DetailsProductViewModel.cs" />
+    <Compile Include="ViewModels\User\DetailsUserViewModel.cs" />
+    <Compile Include="ViewModels\User\EditUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -459,7 +462,9 @@
     <Content Include="Areas\Company\Views\web.config" />
     <Content Include="Areas\Company\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Company\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Administration\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\Admin\Index.cshtml" />
@@ -469,6 +474,7 @@
     <Content Include="Areas\Company\Views\Category\Index.cshtml" />
     <Content Include="Content\kendo\images\kendoui.ttf" />
     <Content Include="Content\kendo\images\kendoui.woff" />
+    <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\default-user-image.png" />
     <Content Include="Images\Home.jpg" />
@@ -1294,6 +1300,10 @@
     <Content Include="Scripts\kendo\kendo.view.min.js.map" />
     <Content Include="Scripts\kendo\kendo.web.min.js.map" />
     <Content Include="Scripts\kendo\kendo.window.min.js.map" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DisplayImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1301,7 +1311,6 @@
     <Folder Include="Areas\Company\Views\Product\" />
     <Folder Include="Libraries\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

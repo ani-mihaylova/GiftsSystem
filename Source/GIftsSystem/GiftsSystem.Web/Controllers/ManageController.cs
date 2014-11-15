@@ -12,18 +12,12 @@
     using GiftsSystem.Data;
 
     [Authorize]
-    public class ManageController : BaseController
+    public class ManageController : Controller
     {
         public ManageController()
         {
-        }
-
-        public ManageController(IGiftsSystemData data)
-            : base(data)
-        {
 
         }
-
         public ManageController(ApplicationUserManager userManager)
         {
             UserManager = userManager;

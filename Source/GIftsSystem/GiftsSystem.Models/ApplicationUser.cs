@@ -10,16 +10,16 @@
     using GiftsSystem.Data.Common;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using System.IO;
 
     public class ApplicationUser : IdentityUser, IFullEntry
     {
         public ApplicationUser()
         {
             // This will prevent UserManager.CreateAsync from causing exception
-            this.CreatedOn = DateTime.Now;
-            this.WishList = new HashSet<Product>();
-            this.ImagePath = "~/Images/default-user-image.png";           
-            
+            this.CreatedOn = DateTime.Now;           
+            this.GiftsCollections = new HashSet<GiftsList>();
+            this.ImagePath = "~/Images/default-user-image.png";
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -30,14 +30,20 @@
             return userIdentity;
         }
 
-        public virtual ICollection<Product> WishList { get; set; }
+        private void SetDefaultImage()
+        {
+            //DirectoryInfo path = Server.MapPath("~\Images\default-user-image");
+            //FileInfo[] images = path.GetFiles();
+            //this.Image=images.FirstOrDefault(f=>f.Name=="default-user-image");
+        }
+
+        public virtual ICollection<GiftsList> GiftsCollections { get; set; }
 
         //public ICollection<Product> BoughtProducts { get; set; }
 
         public string ImagePath { get; set; }
 
-        //TODO:Make multiple collections
-        //public ICollection<Product> PersonalCollection { get; set; }
+        public byte[] Image { get; set; }     
 
         [Index]
         public bool IsDeleted { get; set; }

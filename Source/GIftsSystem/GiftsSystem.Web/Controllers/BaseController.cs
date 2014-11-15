@@ -19,7 +19,13 @@
             this.data = data;
         }
 
-        protected ApplicationUser CurrentUser { get; set; }
+        protected ApplicationUser GetCurrentUser()
+        {
+            var currentUserId = this.User.Identity.GetUserId();
+            var currentUser = this.data.Users.GetById(currentUserId);
+
+            return currentUser;
+        }
        
     }
 }

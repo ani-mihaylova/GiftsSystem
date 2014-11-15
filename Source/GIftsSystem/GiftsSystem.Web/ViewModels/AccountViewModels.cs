@@ -84,6 +84,10 @@ namespace GiftsSystem.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name="Are you company")]
+        public bool IsCompany { get; set; }
     }
 
     public class ResetPasswordViewModel

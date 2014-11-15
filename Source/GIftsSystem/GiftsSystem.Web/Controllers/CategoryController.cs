@@ -36,8 +36,7 @@
             return View(currentCategory);
         }
 
-        [Authorize(Roles = "Company")]
-        [HttpGet]        
+        [HttpGet]
         public ActionResult Create()
         {
             var newModel = new CreateCategoryViewModel();
@@ -54,15 +53,6 @@
             return this.View(newModel);
         }
 
-        //public PartialViewResult GetDropdown()
-        //{
-        //    var allCategory = this.categories.All().ToList();
-
-        //    return PartialView("_DropdownCategory", allCategory);
-        //}
-
-
-        [Authorize(Roles = "Company")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateCategoryViewModel newCategory)
@@ -79,7 +69,7 @@
                 Description = newCategory.Description,
                 CreatedOn = DateTime.Now,
                 ParentCategoryID = parentCategory,
-                Products=new List<Product>()
+                Products = new List<Product>()
             };
 
             this.data.Categories.Add(category);
@@ -88,11 +78,10 @@
             return this.Redirect("/");
         }
 
-        [Authorize(Roles="Company")]
         [HttpGet]
         public ActionResult Edit(string name)
         {
-            if (name==null)
+            if (name == null)
             {
                 return this.Redirect("/");
             }
@@ -103,22 +92,26 @@
             return this.View("Edit", categoryToEdit);
         }
 
-        //[HttpPost]
-        //public ActionResult Edit(EditCategoryViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        this.data.Categories.UpdateValues({
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditCategoryViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                this.data.Categories.UpdateValues(c => new
+                {
+                    ID=model.ID,
+                    Name = model.Name,
+                    Products = model.Products,
+                    Description = model.Description
+                });
 
-        //    });
-        //        this.data.SaveChanges();
-        //        var categoryId=this.data.Categories.GetById(model.ID);
+                this.data.SaveChanges();
+                return this.RedirectToAction("Details", new { id = model.ID });
+            }
 
-        //        return this.RedirectToAction("Details", new { id = categoryId });
-        //    }
-
-        //    return this.View(model);
-        //}
+            return this.RedirectToAction("Details", new { id = model.ID });
+        }
 
     }
 }

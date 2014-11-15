@@ -1,0 +1,39 @@
+﻿@model GiftsSystem.Web.ViewModels.User.DetailsUserViewModel
+
+    @{
+        ViewBag.Title = "Details";
+    }
+
+    <div class="row">
+        <h4>@Model.UserName</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.LabelFor(model => model.ImagePath)
+            </dt>
+            <dd>
+                <img src="@Model.ImagePath" alt="No image" />
+            </dd> 
+
+            <dt>
+                @Html.LabelFor(model => model.GiftsCollections)
+            </dt>
+            <dd>
+                @foreach (var gisftsList in Model.GiftsCollections)
+                {
+                    <h5>@gisftsList.Name</h5>
+                    <div>
+                        @foreach (var product in gisftsList.Products)
+                        {
+                            <p>@product.Name</p>
+                            <p>@product.Image</p>
+                        }
+                    </div>
+                }
+            </dd>          
+        </dl>
+    </div>
+    <div class="row">
+        @Html.ActionLink("EditProfile", "Edit", new { id=Model.ID })
+        @Html.ActionLink("EditCollections","Edit","GiftsList",Model.GiftsCollections,null)        
+    </div>

@@ -19,21 +19,23 @@ namespace GiftsSystem.Data.Migrations
         protected override void Seed(ApplicationDbContext context)
         {
             //Add Admin
-            this.SeedAdmin(context);
+           // this.SeedAdmin(context);
 
             //Add Catagories
-            this.SeedCatagories(context);
-            context.SaveChanges();
-            this.SeedSubCategories(context);
-            context.SaveChanges();
-           
+            this.SeedCatagories(context);                  
+
         }
 
         private void SeedAdmin(ApplicationDbContext context)
         {
-            var sole = "f0cae20b-70c6-469d-907b-44c62532e06f";
-            var role = new IdentityRole("Admin");
-            
+            IdentityRole role = new IdentityRole("Admin");
+
+            if (context.Roles.Contains(role))
+            {
+                return;
+
+            }
+
             context.Roles.Add(role);
         }
 
@@ -58,6 +60,9 @@ namespace GiftsSystem.Data.Migrations
             {
                 context.Categories.Add(item);
             }
+
+            context.SaveChanges();
+            this.SeedSubCategories(context);
         }
 
         private void SeedSubCategories(ApplicationDbContext context)
@@ -79,6 +84,7 @@ namespace GiftsSystem.Data.Migrations
             {
                 context.Categories.Add(item);
             }
+            context.SaveChanges();
         }
     }
 }

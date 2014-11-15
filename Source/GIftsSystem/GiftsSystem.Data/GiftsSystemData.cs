@@ -10,9 +10,9 @@
     using GiftsSystem.Data.Repositories;
     using GiftsSystem.Models;
 
-    public class GiftsSystemData:IGiftsSystemData
+    public class GiftsSystemData : IGiftsSystemData
     {
-       private readonly IApplicationDbContext context;
+        private readonly IApplicationDbContext context;
 
         private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();
 
@@ -103,5 +103,9 @@
 
             return (IDeletableEntityRepository<T>)this.repositories[typeof(T)];
         }
+
+
+
+
     }
 }
