@@ -1,39 +1,51 @@
 ﻿@model GiftsSystem.Web.ViewModels.User.DetailsUserViewModel
 
-    @{
-        ViewBag.Title = "Details";
-    }
+@{
+    ViewBag.Title = "Details";
+}
 
-    <div class="row">
-        <h4>@Model.UserName</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.LabelFor(model => model.ImagePath)
-            </dt>
-            <dd>
-                <img src="@Model.ImagePath" alt="No image" />
-            </dd> 
+<div class="row">
+    <h4>@Model.UserName</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.ImagePath)
+        </dt>
+        <dd>
+            <img src="@Model.ImagePath" alt="No image" />
+        </dd>
 
-            <dt>
-                @Html.LabelFor(model => model.GiftsCollections)
-            </dt>
-            <dd>
-                @foreach (var gisftsList in Model.GiftsCollections)
-                {
-                    <h5>@gisftsList.Name</h5>
-                    <div>
-                        @foreach (var product in gisftsList.Products)
-                        {
-                            <p>@product.Name</p>
-                            <p>@product.Image</p>
-                        }
-                    </div>
-                }
-            </dd>          
-        </dl>
+        <dt>
+            @Html.LabelFor(model => model.GiftsCollections)
+        </dt>
+        <dd>
+            @foreach (var gisftsList in Model.GiftsCollections)
+            {
+                <h5>@gisftsList.Name</h5>
+                <ul class="list-group">
+                    @foreach (var product in gisftsList.Products)
+                    {
+                        <li class="list-group-item">
+                            @product.Name
+                        </li>
+                    }
+                </ul>
+            }
+        </dd>
+    </dl>
+</div>
+<div class="row panel">
+    <div class="panel-body">
+        @Html.ActionLink("EditProfile", "Edit", new { id = Model.ID }, new { @class = "btn btn-info" })
     </div>
-    <div class="row">
-        @Html.ActionLink("EditProfile", "Edit", new { id=Model.ID })
-        @Html.ActionLink("EditCollections","Edit","GiftsList",Model.GiftsCollections,null)        
+    <div class="panel-body">
+        @Html.ActionLink("EditCollections", "Edit", "GiftsList", Model.GiftsCollections, new { @class = "btn btn-info" })
     </div>
+    <div class="panel-body">
+        @Html.ActionLink("CreateCollections", "Create", "GiftsList", Model.GiftsCollections, new { @class = "btn btn-info" })
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("DeleteCollections", "Delete", "GiftsList", Model.GiftsCollections, new { @class = "btn btn-info" })
+    </div>
+
+</div>

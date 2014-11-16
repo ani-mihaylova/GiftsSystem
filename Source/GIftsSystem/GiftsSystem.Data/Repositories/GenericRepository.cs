@@ -169,6 +169,7 @@
                     }
                 });
         }
+
         private int GetPrimaryKey(DbEntityEntry entry)
         {
             var myObject = entry.Entity;

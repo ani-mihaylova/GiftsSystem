@@ -22,9 +22,9 @@ namespace GiftsSystem.Web.Controllers
 
         }
 
-        // GET: RegularUsers/Details/5
+        // GET: Users/Details/5
         public ActionResult Details(string id)
-        {
+       {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

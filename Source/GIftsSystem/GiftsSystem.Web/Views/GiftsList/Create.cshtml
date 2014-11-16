@@ -1,0 +1,26 @@
+﻿@model GiftsSystem.Models.GiftsList
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "GiftsList", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <fieldset>
+        <legend>Create Wish list</legend>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+}

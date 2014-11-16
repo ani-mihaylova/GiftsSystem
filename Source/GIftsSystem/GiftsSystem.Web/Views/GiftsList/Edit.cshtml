@@ -1,0 +1,32 @@
+﻿@model System.Collections.Generic.ICollection<GiftsSystem.Models.GiftsList>
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "GiftsList", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Edit WishLists</legend>
+        @foreach (var collection in Model)
+        {
+            <div class="form-group">
+                @Html.Label(collection.Name, "WishList Name")
+                <div class="col-lg-10">
+                    @Html.Editor(collection.Name)
+                </div>
+
+                @foreach (var product in collection.Products)
+                {
+                    <div class="form-control">
+                        @Html.Label(product.Name)
+                        <div class="col-lg-10">
+                           <button class="btn btn-info">Remove</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </fieldset>
+   
+}

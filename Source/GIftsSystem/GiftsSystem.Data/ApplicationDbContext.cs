@@ -30,6 +30,8 @@
 
         public virtual IDbSet<Category> Categories { get; set; }
 
+        public virtual IDbSet<GiftsList> GiftsLists { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();

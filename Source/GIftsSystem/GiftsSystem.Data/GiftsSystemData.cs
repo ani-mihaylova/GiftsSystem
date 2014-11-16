@@ -44,6 +44,11 @@
             get { return this.GetRepository<ApplicationUser>(); }
         }
 
+        public IGenericRepository<GiftsList> GiftsLists
+        {
+            get { return this.GetRepository<GiftsList>(); }
+        }
+
         public IDeletableEntityRepository<Product> Products
         {
             get { return this.GetDeletableEntityRepository<Product>(); }

@@ -18,6 +18,8 @@
 
         IGenericRepository<ApplicationUser> Users { get; }
 
+        IGenericRepository<GiftsList> GiftsLists { get; }
+
         int SaveChanges();
     }
 }
