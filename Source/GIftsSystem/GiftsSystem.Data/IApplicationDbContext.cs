@@ -17,6 +17,7 @@ namespace GiftsSystem.Data
 
         IDbSet<Category> Categories { get; set; }
 
+        IDbSet<GiftsList> GiftsLists { get; set; }
 
         DbContext DbContext { get; }
 

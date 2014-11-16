@@ -19,7 +19,7 @@ namespace GiftsSystem.Data.Migrations
         protected override void Seed(ApplicationDbContext context)
         {
             //Add Reles
-            this.SeedRoles(context);
+           // this.SeedRoles(context);
 
             //Add Catagories
             this.SeedCatagories(context);

@@ -39,14 +39,14 @@
         //    return this.GetRepository<T>();
         //}
 
-        public IDeletableEntityRepository<ApplicationUser> Users
+        public IGenericRepository<ApplicationUser> Users
         {
-            get { return this.GetDeletableEntityRepository<ApplicationUser>(); }
+            get { return this.GetRepository<ApplicationUser>(); }
         }
 
-        public IDeletableEntityRepository<GiftsList> GiftsLists
+        public IGenericRepository<GiftsList> GiftsLists
         {
-            get { return this.GetDeletableEntityRepository<GiftsList>(); }
+            get { return this.GetRepository<GiftsList>(); }
         }
 
         public IDeletableEntityRepository<Product> Products

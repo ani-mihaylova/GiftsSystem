@@ -16,9 +16,9 @@
 
         IDeletableEntityRepository<Category> Categories { get; }
 
-        IDeletableEntityRepository<ApplicationUser> Users { get; }
+        IGenericRepository<ApplicationUser> Users { get; }
 
-        IDeletableEntityRepository<GiftsList> GiftsLists { get; }
+        IGenericRepository<GiftsList> GiftsLists { get; }
 
         int SaveChanges();
     }
