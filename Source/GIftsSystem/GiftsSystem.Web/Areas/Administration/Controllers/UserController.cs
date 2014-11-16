@@ -6,10 +6,9 @@ using System.Web.Mvc;
 
 namespace GiftsSystem.Web.Areas.Administration.Controllers
 {
-    [Authorize(Roles="Admin")]
-    public class AdminController : Controller
+    public class UserController : Controller
     {
-        // GET: Administration/Admin
+        // GET: Administration/User
         public ActionResult Index()
         {
             return View();

@@ -11,14 +11,17 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.IO;
+    using GiftsSystem.Data.Contracts;
 
-    public class ApplicationUser : IdentityUser, IFullEntry
+    public class ApplicationUser : IdentityUser, IAuditInfo,IDeletableEntity
     {
+        private ICollection<GiftsList> wishLists;
+
         public ApplicationUser()
         {
             // This will prevent UserManager.CreateAsync from causing exception
-            this.CreatedOn = DateTime.Now;           
-            this.GiftsCollections = new HashSet<GiftsList>();
+            this.CreatedOn = DateTime.Now;
+            this.wishLists = new HashSet<GiftsList>();
             this.ImagePath = "~/Images/default-user-image.png";
         }
 
@@ -37,13 +40,15 @@
             //this.Image=images.FirstOrDefault(f=>f.Name=="default-user-image");
         }
 
-        public virtual ICollection<GiftsList> GiftsCollections { get; set; }
-
-        //public ICollection<Product> BoughtProducts { get; set; }
+        public virtual ICollection<GiftsList> WishLists
+        {
+            get { return this.wishLists; }
+            set { this.wishLists = value; }
+        }
 
         public string ImagePath { get; set; }
 
-        public byte[] Image { get; set; }     
+        public byte[] Image { get; set; }
 
         [Index]
         public bool IsDeleted { get; set; }
@@ -58,6 +63,6 @@
 
 
         public DateTime? ModifiedOn { get; set; }
-       
+
     }
 }

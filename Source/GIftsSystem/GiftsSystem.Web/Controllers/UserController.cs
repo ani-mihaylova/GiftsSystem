@@ -75,7 +75,7 @@ namespace GiftsSystem.Web.Controllers
                 var userToUpdate = this.data.Users.GetById(model.ID);
 
                 userToUpdate.UserName = model.UserName;
-                userToUpdate.GiftsCollections = model.GiftsCollections;
+                userToUpdate.WishLists = model.GiftsCollections;
 
 
                 //Add image

@@ -68,7 +68,7 @@
                 Name = newCategory.Name,
                 Description = newCategory.Description,
                 CreatedOn = DateTime.Now,
-                ParentCategoryID = parentCategory,
+                ParentCategory = parentCategory,
                 Products = new List<Product>()
             };
 

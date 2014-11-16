@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace GiftsSystem.Web.Areas.Company.Controllers
+namespace GiftsSystem.Web.Areas.Administration.Controllers
 {
-    public class ProductController : Controller
+    public class CategoryController : Controller
     {
-        // GET: Company/Product
+        // GET: Administration/Category
         public ActionResult Index()
         {
             return View();

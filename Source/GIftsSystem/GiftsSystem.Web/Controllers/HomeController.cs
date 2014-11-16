@@ -19,13 +19,13 @@
             Dictionary<Category, List<Category>> categoriesWithChilderen = new Dictionary<Category, List<Category>>();
             foreach (var item in all)
             {
-                if (item.ParentCategoryID == null)
+                if (item.ParentCategory == null)
                 {
                     categoriesWithChilderen.Add(item, new List<Category>());
                 }
                 else
                 {                   
-                    categoriesWithChilderen[item.ParentCategoryID].Add(item);
+                    categoriesWithChilderen[item.ParentCategory].Add(item);
                 }
             }
 

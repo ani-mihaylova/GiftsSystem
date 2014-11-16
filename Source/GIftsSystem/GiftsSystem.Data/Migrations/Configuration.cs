@@ -18,25 +18,36 @@ namespace GiftsSystem.Data.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            //Add Admin
-           // this.SeedAdmin(context);
+            //Add Reles
+            this.SeedRoles(context);
 
             //Add Catagories
-            this.SeedCatagories(context);                  
+            this.SeedCatagories(context);
 
+            context.SaveChanges();
         }
 
-        private void SeedAdmin(ApplicationDbContext context)
+        private void SeedRoles(ApplicationDbContext context)
         {
-            IdentityRole role = new IdentityRole("Admin");
+            var roles = new List<IdentityRole>()
+            {
+                new IdentityRole("Admin"),
+                 new IdentityRole("Company"),
+                  new IdentityRole("User")
+            };
 
-            if (context.Roles.Contains(role))
+            if (context.Roles.Count() != 0)
             {
                 return;
 
             }
 
-            context.Roles.Add(role);
+            foreach (var role in roles)
+            {
+                context.Roles.Add(role);
+            }
+
+
         }
 
         private void SeedCatagories(ApplicationDbContext context)
@@ -72,19 +83,18 @@ namespace GiftsSystem.Data.Migrations
 
             List<Category> subCategories = new List<Category>()
             {
-                 new Category(){ Name="Jewelry", ParentCategoryID=fashoinCategory},
-                new Category(){ Name="Watches", ParentCategoryID=fashoinCategory},
-                new Category(){ Name="Handbags", ParentCategoryID=fashoinCategory},
-                 new Category(){ Name="Bath", ParentCategoryID=homeCategoryId},
-                  new Category(){ Name="Furniture", ParentCategoryID=homeCategoryId},
-                   new Category(){ Name="HomeDecor", ParentCategoryID=homeCategoryId},
-                    new Category(){ Name="Lamp", ParentCategoryID=homeCategoryId}
+                 new Category(){ Name="Jewelry", ParentCategory=fashoinCategory},
+                new Category(){ Name="Watches", ParentCategory=fashoinCategory},
+                new Category(){ Name="Handbags", ParentCategory=fashoinCategory},
+                 new Category(){ Name="Bath", ParentCategory=homeCategoryId},
+                  new Category(){ Name="Furniture", ParentCategory=homeCategoryId},
+                   new Category(){ Name="HomeDecor", ParentCategory=homeCategoryId},
+                    new Category(){ Name="Lamp", ParentCategory=homeCategoryId}
             };
             foreach (var item in subCategories)
             {
                 context.Categories.Add(item);
             }
-            context.SaveChanges();
         }
     }
 }

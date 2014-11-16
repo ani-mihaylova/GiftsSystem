@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace GiftsSystem.Web.Areas.Administration.Controllers
 {
-    public class HomeController : Controller
+    public class ProductController : Controller
     {
-        // GET: Administration/Home
+        // GET: Administration/Product
         public ActionResult Index()
         {
             return View();

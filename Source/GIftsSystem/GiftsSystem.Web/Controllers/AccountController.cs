@@ -10,11 +10,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GiftsSystem.Web.Models;
 using GiftsSystem.Models;
+using GiftsSystem.Data;
 
 namespace GiftsSystem.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationUserManager _userManager;
 
