@@ -39,7 +39,7 @@
                                 Administration
                                 <ul>
                                     <li>@Html.ActionLink("Edit Category", "Index", "Category", new { area = "Administration" }, null)</li>
-                                    @*<li>@Html.ActionLink("Edit Product", "Create", "Product", new { area = "Administration" }, null)</li>*@
+                                    <li>@Html.ActionLink("Edit Product", "Create", "Product", new { area = "Administration" }, null)</li>
                                 </ul>
                             </li>
                         }
@@ -51,6 +51,7 @@
         </div>
     </div>
     <div class="container body-content">
+        <br/>
         @RenderBody()
         <hr />
         <footer>

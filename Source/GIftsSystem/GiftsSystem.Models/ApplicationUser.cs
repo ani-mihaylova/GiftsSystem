@@ -16,12 +16,14 @@
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
         private ICollection<GiftsList> wishLists;
+        private ICollection<Product> boughtProducts;
 
         public ApplicationUser()
         {
             // This will prevent UserManager.CreateAsync from causing exception
             this.CreatedOn = DateTime.Now;
             this.wishLists = new HashSet<GiftsList>();
+            this.boughtProducts = new HashSet<Product>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -37,6 +39,13 @@
             get { return this.wishLists; }
             set { this.wishLists = value; }
         }
+
+        public virtual ICollection<Product> BoughtProducts
+        {
+            get { return this.boughtProducts; }
+            set { this.boughtProducts = value; }
+        }
+
 
         [Index]
         public bool IsDeleted { get; set; }

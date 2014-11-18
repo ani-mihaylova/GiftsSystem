@@ -22,6 +22,12 @@
             {
                 <li role="presentation"><a href="@string.Format("/Product/Details/{0}",product.ID)">
                     @product.Name</a></li>
+                <li>
+                    @if (@product.ImageId != null)
+                    {
+                        <img src="@Url.Action("Image", "Product", new { id = product.ID })" alt="@product.Name" class="img-responsive" />
+                    }
+                </li>
             }
            
         </ul>

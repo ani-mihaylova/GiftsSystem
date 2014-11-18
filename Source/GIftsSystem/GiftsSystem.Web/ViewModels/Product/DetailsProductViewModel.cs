@@ -5,11 +5,12 @@
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using AutoMapper;
     using GiftSystem.Web.Infrastructure.Mapping;
 
-    public class DetailsProductViewModel : IMapFrom<GiftsSystem.Models.Product>
+    public class DetailsProductViewModel : IMapFrom<GiftsSystem.Models.Product>, IHaveCustomMappings
     {
-        [HiddenInput(DisplayValue=false)]
+        [HiddenInput(DisplayValue = false)]
         public int ID { get; set; }
 
         public string Name { get; set; }
@@ -26,6 +27,19 @@
 
         public HttpPostedFileBase UploadedImage { get; set; }
 
-        public GiftsSystem.Models.Category CategoryID { get; set; }
+        public string CategoryName { get; set; }
+
+        public bool IsBought { get; set; }
+
+        public int? ImageId { get; set; }
+
+        public void CreateMappings(IConfiguration configuration)
+        {
+            configuration.CreateMap<GiftsSystem.Models.Product, DetailsProductViewModel>()
+                .ForMember(m => m.ID, opt => opt.MapFrom(t => t.ID))
+                .ForMember(m => m.CategoryName, opt => opt.MapFrom(t => t.Category.Name))
+                .ReverseMap();
+
+        }
     }
 }
