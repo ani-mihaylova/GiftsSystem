@@ -33,13 +33,6 @@
             return userIdentity;
         }
 
-        private void SetDefaultImage()
-        {
-            //DirectoryInfo path = Server.MapPath("~\Images\default-user-image");
-            //FileInfo[] images = path.GetFiles();
-            //this.Image=images.FirstOrDefault(f=>f.Name=="default-user-image");
-        }
-
         public virtual ICollection<GiftsList> WishLists
         {
             get { return this.wishLists; }

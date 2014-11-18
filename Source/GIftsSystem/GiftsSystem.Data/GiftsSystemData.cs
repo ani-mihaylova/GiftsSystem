@@ -49,6 +49,11 @@
             get { return this.GetRepository<GiftsList>(); }
         }
 
+        public IGenericRepository<Image> Images
+        {
+            get { return this.GetRepository<Image>(); }
+        }
+
         public IDeletableEntityRepository<Product> Products
         {
             get { return this.GetDeletableEntityRepository<Product>(); }
@@ -108,9 +113,5 @@
 
             return (IDeletableEntityRepository<T>)this.repositories[typeof(T)];
         }
-
-
-
-
     }
 }

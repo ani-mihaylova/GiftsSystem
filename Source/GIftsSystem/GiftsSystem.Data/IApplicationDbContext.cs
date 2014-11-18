@@ -19,6 +19,8 @@ namespace GiftsSystem.Data
 
         IDbSet<GiftsList> GiftsLists { get; set; }
 
+        IDbSet<Image> Images { get; set; }
+
         DbContext DbContext { get; }
 
         int SaveChanges();

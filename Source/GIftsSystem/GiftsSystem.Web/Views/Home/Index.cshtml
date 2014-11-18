@@ -52,21 +52,25 @@
         dataSource
             .ServerOperation(true)
             .PageSize(15)
-            .Read(read => read.Action("ReadCategory", "Home" ));
+            .Read(read => read.Action("ReadCategory", "Home"));
     }))
 
 
 <script type="text/x-kendo-tmpl" id="all-tickets-template">
-    <div class="row">
-        <div class="col-md-3">
-            <h3>#= Name #</h3>
-        </div>
-        <div class="col-md-4">
-            <p>#= Description #</p>
-        </div>
-        <div class="col-md-4">
-            <p>#= Description #</p>
-        </div>        
+    <div>
+        <h3>#= Name #</h3>
     </div>
+    <div class="row">
+        <div>
+            <p>#= Description #</p>
+        </div>
+    </div>
+    <div class="row">
+        <div>  
+            <img src="@Url.Content("/Category/Image")#:ID#" alt="#:Name# image" />         
+            @*<img src="@Url.Action("Image", "Category", new  { id= #:ID # })" alt="${Name}"/>*@
+        </div>
+    </div>
+
 </script>
 

@@ -1,14 +1,15 @@
 ﻿namespace GiftsSystem.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Web.Mvc;
-    using AutoMapper.QueryableExtensions;
-    using GiftsSystem.Data;
-    using GiftsSystem.Models;
-    using GiftsSystem.Web.ViewModels.Category;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
+using GiftsSystem.Data;
+using GiftsSystem.Models;
+using GiftsSystem.Web.ViewModels.Category;
 
     public class CategoryController : BaseController
     {
@@ -66,7 +67,7 @@
                 return this.View(newCategory);
             }
 
-            var parentCategory = this.data.Categories.GetById(newCategory.ParentCategoryID);
+            var parentCategory = this.data.Categories.All().FirstOrDefault(c => c.ID.ToString() == newCategory.ParentCategoryId);
             var category = new Category()
             {
                 Name = newCategory.Name,
@@ -117,19 +118,34 @@
         {
             if (ModelState.IsValid)
             {
-                this.data.Categories.UpdateValues(c => new
-                {
-                    ID = model.ID,
-                    Name = model.Name,
-                    Products = model.Products,
-                    Description = model.Description
-                });
-
+                var categoryForUpdate = this.data.Categories.All().FirstOrDefault(c => c.ID == model.ID);
+                categoryForUpdate.Name = model.Name;
+                categoryForUpdate.Description = model.Description;
+                
+                //this.data.Categories.UpdateValues(c => new
+                //{
+                //    ID = model.ID,
+                //    Name = model.Name,
+                //    Description = model.Description,
+                //    Products =model.Products
+                //});
+                this.data.Categories.Update(categoryForUpdate);
                 this.data.SaveChanges();
                 return this.RedirectToAction("Details", new { id = model.ID });
             }
 
             return this.RedirectToAction("Details", new { id = model.ID });
+        }
+
+        public ActionResult Image(int id)
+        {
+            var image = this.data.Images.GetById(id);
+            if (image == null)
+            {
+                throw new HttpException(404, "Image not found");
+            }
+
+            return File(image.Content, "image/" + image.FileExtension);
         }
 
     }

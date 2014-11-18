@@ -16,5 +16,7 @@ namespace GiftsSystem.Web.ViewModels.Category
         public string Description { get; set; }
 
         public ICollection<GiftsSystem.Models.Product> Products { get; set; }
+
+        public int? ImageId { get; set; }
     }
 }

@@ -32,6 +32,8 @@
 
         public virtual IDbSet<GiftsList> GiftsLists { get; set; }
 
+        public virtual IDbSet<Image> Images { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();

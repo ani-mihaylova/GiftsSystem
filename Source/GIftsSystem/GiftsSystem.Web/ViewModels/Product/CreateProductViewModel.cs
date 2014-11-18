@@ -6,8 +6,9 @@
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using GiftSystem.Web.Infrastructure.Mapping;
 
-    public class CreateProductViewModel
+    public class CreateProductViewModel:IMapFrom<GiftsSystem.Models.Product>
     {
         [Required]
         [UIHint("StringLineText")]
@@ -31,10 +32,9 @@
         [UIHint("Number")]
         public double Price { get; set; }
 
-        [Required]
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
-        public byte[] Image { get; set; }
+        public HttpPostedFileBase UploadedImage { get; set; }
 
         public ICollection<SelectListItem> Categories { get; set; }
 

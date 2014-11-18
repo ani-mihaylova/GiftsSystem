@@ -20,6 +20,8 @@
 
         IGenericRepository<GiftsList> GiftsLists { get; }
 
+        IGenericRepository<Image> Images { get; }
+
         int SaveChanges();
 
         void Dispose();

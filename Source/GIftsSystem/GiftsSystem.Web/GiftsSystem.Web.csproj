@@ -1300,11 +1300,9 @@
     <Content Include="Views\GiftsList\Edit.cshtml" />
     <Content Include="Views\GiftsList\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
-    <Content Include="Views\Home\NewIndex.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\StringLineText.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MultiLineText.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
