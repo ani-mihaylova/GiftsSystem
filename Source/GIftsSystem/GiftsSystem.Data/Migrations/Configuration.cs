@@ -4,11 +4,16 @@ namespace GiftsSystem.Data.Migrations
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using GiftsSystem.Common;
     using GiftsSystem.Models;
+    using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
+        private UserManager<ApplicationUser> userManager;
+
         public Configuration()
         {
             //TODO:Remove in production
@@ -18,8 +23,9 @@ namespace GiftsSystem.Data.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            //Add Reles
-           // this.SeedRoles(context);
+            this.userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            this.SeedRoles(context);
+            this.SeedUsers(context);
 
             //Add Catagories
             this.SeedCatagories(context);
@@ -29,25 +35,35 @@ namespace GiftsSystem.Data.Migrations
 
         private void SeedRoles(ApplicationDbContext context)
         {
-            var roles = new List<IdentityRole>()
-            {
-                new IdentityRole("Admin"),
-                 new IdentityRole("Company"),
-                  new IdentityRole("User")
-            };
+            context.Roles.AddOrUpdate(x => x.Name, new IdentityRole(GlobalConstants.AdminRoleName));
+            context.Roles.AddOrUpdate(x => x.Name, new IdentityRole(GlobalConstants.CompanyRoleName));
+            context.SaveChanges();
+        }
 
-            if (context.Roles.Count() != 0)
+        private void SeedUsers(ApplicationDbContext context)
+        {
+            if (context.Users.Any())
             {
                 return;
-
             }
 
-            foreach (var role in roles)
+            var adminUser = new ApplicationUser
             {
-                context.Roles.Add(role);
-            }
+                Email = "admin@mysite.com",
+                UserName = "Administrator"
+            };
 
+            var companyUser = new ApplicationUser
+            {
+                Email = "cmompany@mysite.com",
+                UserName = "Company"
+            };
 
+            this.userManager.Create(companyUser, "admin123456");
+            this.userManager.Create(adminUser, "admin123456");
+
+            this.userManager.AddToRole(adminUser.Id, GlobalConstants.AdminRoleName);
+            this.userManager.AddToRole(companyUser.Id, GlobalConstants.CompanyRoleName);
         }
 
         private void SeedCatagories(ApplicationDbContext context)

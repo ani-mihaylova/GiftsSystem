@@ -9,28 +9,36 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.LabelFor(model => model.ImagePath)
+            @Html.LabelFor(model => model.ImageId)
+            
         </dt>
         <dd>
-            <img src="@Model.ImagePath" alt="No image" />
+           @if (Model.ImageId != null)
+           {
+            <img src="@Url.Action("Image", "User", new { id = Model.ImageId.Value })" alt="@Model.UserName" class="img-responsive" />
+           }
         </dd>
 
         <dt>
             @Html.LabelFor(model => model.GiftsCollections)
         </dt>
         <dd>
-            @foreach (var gisftsList in Model.GiftsCollections)
+            @if (Model.GiftsCollections != null)
             {
-                <h5>@gisftsList.Name</h5>
-                <ul class="list-group">
-                    @foreach (var product in gisftsList.Products)
-                    {
-                        <li class="list-group-item">
-                            @product.Name
-                        </li>
-                    }
-                </ul>
+                foreach (var gisftsList in Model.GiftsCollections)
+                {
+                    <h5>@gisftsList.Name</h5>
+                    <ul class="list-group">
+                        @foreach (var product in gisftsList.Products)
+                        {
+                            <li class="list-group-item">
+                                @product.Name
+                            </li>
+                        }
+                    </ul>
+                }
             }
+           
         </dd>
     </dl>
 </div>
@@ -38,9 +46,9 @@
     <div class="panel-body">
         @Html.ActionLink("EditProfile", "Edit", new { id = Model.ID }, new { @class = "btn btn-info" })
     </div>
-    <div class="panel-body">
+    @*<div class="panel-body">
         @Html.ActionLink("EditCollections", "Edit", "GiftsList", Model.GiftsCollections, new { @class = "btn btn-info" })
-    </div>
+    </div>*@
     <div class="panel-body">
         @Html.ActionLink("CreateCollections", "Create", "GiftsList", Model.GiftsCollections, new { @class = "btn btn-info" })
     </div>

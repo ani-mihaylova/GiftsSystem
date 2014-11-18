@@ -45,8 +45,10 @@
 
             newGiftsList.User = currentUser;
             newGiftsList.Products = new List<Product>();
-
             this.data.GiftsLists.Add(newGiftsList);
+            currentUser.GiftsCollections.Add(newGiftsList);
+            this.data.Users.Update(currentUser);
+
             this.data.SaveChanges();
 
             return this.RedirectToAction("Details", "User", new { id = currentUser.Id });

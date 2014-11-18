@@ -14,7 +14,7 @@
 
         public string UserName { get; set; }
 
-        public byte[] Image { get; set; }
+        public HttpPostedFileBase UploadedImage { get; set; }
 
         public ICollection<GiftsList> GiftsCollections { get; set; }
     }

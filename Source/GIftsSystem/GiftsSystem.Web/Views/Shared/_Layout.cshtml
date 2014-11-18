@@ -26,9 +26,25 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Create Category", "Create", "Category")</li>
-                    <li>@Html.ActionLink("Create Product", "Create", "Product")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole(GiftsSystem.Common.GlobalConstants.CompanyRoleName))
+                        {
+                            <li>@Html.ActionLink("Create Category", "Create", "Category", new { area = string.Empty }, null)</li>
+                            <li>@Html.ActionLink("Create Product", "Create", "Product", new { area = string.Empty }, null)</li>
+                        }
+                        if (User.IsInRole(GiftsSystem.Common.GlobalConstants.AdminRoleName))
+                        {
+                            <li>
+                                Administration
+                                <ul>
+                                    <li>@Html.ActionLink("Create Category", "Create", "Category", new { area = "Administration" }, null)</li>
+                                    <li>@Html.ActionLink("Create Product", "Create", "Product", new { area = "Administration" }, null)</li>
+                                </ul>
+                            </li>
+                        }
+                    }
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -44,6 +60,6 @@
     @Scripts.Render("~/bundles/kendo")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    
+
 </body>
 </html>

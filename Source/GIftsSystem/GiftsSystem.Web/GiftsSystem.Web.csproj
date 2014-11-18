@@ -203,6 +203,7 @@
     <Compile Include="Areas\Administration\Controllers\ProductController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserController.cs" />
     <Compile Include="Areas\Administration\ViewModels\Category\EditCategoryViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Product\EditProductViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -1315,7 +1316,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\ViewModels\Product\" />
     <Folder Include="Areas\Administration\ViewModels\User\" />
     <Folder Include="Areas\Administration\Views\Admin\" />
     <Folder Include="Areas\Administration\Views\KendoGridAdmin\" />

@@ -11,6 +11,7 @@ using GiftsSystem.Models;
 using AutoMapper.QueryableExtensions;
 using AutoMapper;
 using GiftsSystem.Web.ViewModels.User;
+using System.IO;
 
 namespace GiftsSystem.Web.Controllers
 {
@@ -24,19 +25,19 @@ namespace GiftsSystem.Web.Controllers
 
         // GET: Users/Details/5
         public ActionResult Details(string id)
-       {
+        {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = this.data.Users.All().Where(u => u.Id == id).Project().To<DetailsUserViewModel>().FirstOrDefault();
-                 
+
             if (user == null)
             {
                 return Redirect("Account/Login");
             }
-                      
-            return View("Details",user);
+
+            return View("Details", user);
         }
 
 
@@ -54,41 +55,39 @@ namespace GiftsSystem.Web.Controllers
                 return RedirectToAction("Details", new { id = id });
             }
 
-            return View("Edit",user);
+            return View("Edit", user);
         }
 
         // POST: RegularUsers/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Exclude = "Image")]EditUserViewModel model, HttpPostedFileBase Image)
+        public ActionResult Edit(EditUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(regularUser).State = EntityState.Modified;
-                //db.SaveChanges();
-                //this.data.Users.UpdateValues(c => new 
-                //{
-                //    Id=model.ID,
-                //    UserName = model.UserName,
-                //    ModifiedOn = DateTime.Now
-                //});
-
                 var userToUpdate = this.data.Users.GetById(model.ID);
 
                 userToUpdate.UserName = model.UserName;
-                userToUpdate.WishLists = model.GiftsCollections;
+                userToUpdate.GiftsCollections = model.GiftsCollections;
 
-
-                //Add image
-                if (Image != null && Image.ContentLength > 0)
+                if (model.UploadedImage != null)
                 {
-                    byte[] imgBinaryData = new byte[Image.ContentLength];
-                    int readResult = Image.InputStream.Read(imgBinaryData, 0, Image.ContentLength);
-                    model.Image = imgBinaryData;
+                    using (var memory = new MemoryStream())
+                    {
+                        model.UploadedImage.InputStream.CopyTo(memory);
+                        var content = memory.GetBuffer();
+
+                        userToUpdate.Image = new Image
+                        {
+                            Content = content,
+                            FileExtension = model.UploadedImage.FileName.Split(new[] { '.' }).Last()
+                        };
+                    }
                 }
 
+                this.data.Users.Update(userToUpdate);
                 this.data.SaveChanges();
 
-                return RedirectToAction("Details", new { id=model.ID });
+                return RedirectToAction("Details", new { id = model.ID });
             }
 
             return RedirectToAction("Details", new { id = model.ID });
@@ -119,14 +118,15 @@ namespace GiftsSystem.Web.Controllers
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
         //}
+        public ActionResult Image(int id)
+        {
+            var image = this.data.Images.GetById(id);
+            if (image == null)
+            {
+                throw new HttpException(404, "Image not found");
+            }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+            return File(image.Content, "image/" + image.FileExtension);
+        }
     }
 }

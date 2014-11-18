@@ -13,7 +13,7 @@
     using System.IO;
     using GiftsSystem.Data.Contracts;
 
-    public class ApplicationUser : IdentityUser, IAuditInfo,IDeletableEntity
+    public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
         private ICollection<GiftsList> wishLists;
 
@@ -22,7 +22,6 @@
             // This will prevent UserManager.CreateAsync from causing exception
             this.CreatedOn = DateTime.Now;
             this.wishLists = new HashSet<GiftsList>();
-            this.ImagePath = "~/Images/default-user-image.png";
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -33,15 +32,11 @@
             return userIdentity;
         }
 
-        public virtual ICollection<GiftsList> WishLists
+        public virtual ICollection<GiftsList> GiftsCollections
         {
             get { return this.wishLists; }
             set { this.wishLists = value; }
         }
-
-        public string ImagePath { get; set; }
-
-        public byte[] Image { get; set; }
 
         [Index]
         public bool IsDeleted { get; set; }
@@ -56,6 +51,10 @@
 
 
         public DateTime? ModifiedOn { get; set; }
+
+        public int? ImageId { get; set; }
+
+        public virtual Image Image { get; set; }
 
     }
 }

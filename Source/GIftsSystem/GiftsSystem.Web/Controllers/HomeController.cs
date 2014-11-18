@@ -9,7 +9,6 @@
     using GiftsSystem.Web.ViewModels.Home;
     using Kendo.Mvc.UI;
     using Kendo.Mvc.Extensions;
-    using AutoMapper.QueryableExtensions;
 
     public class HomeController : BaseController
     {
