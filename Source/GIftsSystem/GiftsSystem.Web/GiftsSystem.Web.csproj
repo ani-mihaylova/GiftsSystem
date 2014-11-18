@@ -201,7 +201,6 @@
     <Compile Include="Areas\Administration\Controllers\Base\KendoGridAdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Administration\Controllers\ProductController.cs" />
-    <Compile Include="Areas\Administration\Controllers\UserController.cs" />
     <Compile Include="Areas\Administration\ViewModels\Category\EditCategoryViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Product\EditProductViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -234,6 +233,8 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.flatly.css" />
+    <Content Include="Content\bootstrap.flatly.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.united.css" />
     <Content Include="Content\bootstrap.united.min.css" />
@@ -469,9 +470,11 @@
     <Content Include="Content\kendo\images\kendoui.ttf" />
     <Content Include="Content\kendo\images\kendoui.woff" />
     <Content Include="Areas\Administration\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\default-user-image.png" />
     <Content Include="Images\Home.jpg" />
+    <Content Include="Images\start.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -1319,7 +1322,6 @@
     <Folder Include="Areas\Administration\ViewModels\User\" />
     <Folder Include="Areas\Administration\Views\Admin\" />
     <Folder Include="Areas\Administration\Views\KendoGridAdmin\" />
-    <Folder Include="Areas\Administration\Views\Product\" />
     <Folder Include="Areas\Administration\Views\User\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

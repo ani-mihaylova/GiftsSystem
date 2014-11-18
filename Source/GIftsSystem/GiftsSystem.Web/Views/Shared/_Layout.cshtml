@@ -14,7 +14,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,20 +26,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated)
+                    @*@if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole(GiftsSystem.Common.GlobalConstants.CompanyRoleName))
-                        {
+                        {*@
                             <li>@Html.ActionLink("Create Category", "Create", "Category", new { area = string.Empty }, null)</li>
                             <li>@Html.ActionLink("Create Product", "Create", "Product", new { area = string.Empty }, null)</li>
-                        }
+                        @*}
                         if (User.IsInRole(GiftsSystem.Common.GlobalConstants.AdminRoleName))
-                        {
+                        {*@
                             <li>
                                 Administration
                                 <ul>
-                                    <li>@Html.ActionLink("Create Category", "Create", "Category", new { area = "Administration" }, null)</li>
-                                    <li>@Html.ActionLink("Create Product", "Create", "Product", new { area = "Administration" }, null)</li>
+                                    <li>@Html.ActionLink("Edit Category", "Index", "Category", new { area = "Administration" }, null)</li>
+                                    @*<li>@Html.ActionLink("Edit Product", "Create", "Product", new { area = "Administration" }, null)</li>*@
                                 </ul>
                             </li>
                         }

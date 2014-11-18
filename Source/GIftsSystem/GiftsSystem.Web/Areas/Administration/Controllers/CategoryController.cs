@@ -66,33 +66,7 @@
             if (model != null && ModelState.IsValid)
             {
                 var category = this.data.Categories.GetById(model.ID);
-
-                foreach (var productId in category.Products.Select(c=>c.ID).ToList())
-                {
-                    //var products=this.data.Products.All()
-                    //    .Where(p=>p.Category.ID==)
-
-                    //var comments = this.Data
-                    //    .Comments
-                    //    .All()
-                    //    .Where(c => c.TicketId == productId)
-                    //    .Select(c => c.Id)
-                    //    .ToList();
-
-                    //foreach (var commentId in comments)
-                    //{
-                    //    this.Data.Comments.Delete(commentId);
-                    //}
-
-                    //this.Data.SaveChanges();
-
-                    //this.Data.Tickets.Delete(productId);
-                }
-
-                //this.Data.SaveChanges();
-
-                //this.Data.Categories.Delete(category);
-                //this.Data.SaveChanges();
+                this.data.Categories.Delete(model.ID);           
                 return this.GridOperation(model, request);
             }
            

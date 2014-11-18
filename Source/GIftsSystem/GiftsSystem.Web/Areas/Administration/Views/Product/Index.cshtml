@@ -1,22 +1,21 @@
-﻿@using GiftsSystem.Web.HtmlHelpers
+﻿
 @{
     const string ControllerName = "Category";
     ViewBag.Title = "Index";
 }
 
-<h2>Edit</h2>
-
-@*@(Html.FullFeaturedGrid<GiftsSystem.Web.Areas.Administration.ViewModels.Category.EditCategoryViewModel>
-    (ControllerName,m=>m.ID))*@
 @(Html.Kendo()
-        .Grid<GiftsSystem.Web.Areas.Administration.ViewModels.Category.EditCategoryViewModel>()
+        .Grid<GiftsSystem.Web.Areas.Administration.ViewModels.Product.EditProductViewModel>()
     .Name("grid")
     .Columns(cols =>
     {
         cols.Bound(pr => pr.ID);
         cols.Bound(pr => pr.Name);
         cols.Bound(pr => pr.Description);
-        cols.Bound(pr => pr.ParentCategoryName);
+        cols.Bound(pr => pr.Condition);
+        cols.Bound(pr => pr.ExpirationDate);
+        cols.Bound(pr => pr.Quantity);
+        cols.Bound(pr => pr.Price);
         cols.Command(com => com.Edit()).Title("Edit");
         cols.Command(com => com.Destroy()).Title("Delete");
     })
@@ -31,8 +30,9 @@
         data
             .Ajax()
             .Model(m => m.Id(cat => cat.ID))
-            .Read(read => read.Action("Read", "Category"))
-                .Create(create => create.Action("Create", "Category"))
-                .Update(update => update.Action("Update", "Category"))
-                .Destroy(destroy => destroy.Action("Destroy", "Category"))
+            .Read(read => read.Action("Read", "Product"))
+                .Create(create => create.Action("Create", "Product"))
+                .Update(update => update.Action("Update", "Product"))
+                .Destroy(destroy => destroy.Action("Destroy", "Product"))
             ))
+

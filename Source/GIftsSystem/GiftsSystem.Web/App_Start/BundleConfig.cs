@@ -26,10 +26,10 @@ namespace GiftsSystem.Web
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
                 "~/Content/kendo/kendo.common.min.css",
                      "~/Content/kendo/kendo.common-bootstrap.min.css",
-                     "~/Content/kendo/kendo.silver.min.css"));
+                     "~/Content/kendo/kendo.blueopal.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.united.css",
+                      "~/Content/bootstrap.flatly.css",
                       "~/Content/site.css"));
 
 
