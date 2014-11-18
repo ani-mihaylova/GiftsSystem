@@ -1,0 +1,39 @@
+﻿@using GiftsSystem.Web.HtmlHelpers
+@{
+    const string ControllerName = "Category";
+    ViewBag.Title = "Index";
+}
+
+<h2>Edit</h2>
+
+@*@(Html.FullFeaturedGrid<GiftsSystem.Web.Areas.Administration.ViewModels.Category.EditCategoryViewModel>
+    (ControllerName,m=>m.ID))*@
+@(Html.Kendo()
+        .Grid<GiftsSystem.Web.Areas.Administration.ViewModels.Category.EditCategoryViewModel>()
+    .Name("grid")
+    .Columns(cols =>
+    {
+        cols.Bound(pr => pr.ID);
+        cols.Bound(pr => pr.Name);
+        cols.Bound(pr => pr.Description);
+        cols.Bound(pr => pr.ParentCategoryName);
+        cols.Bound(pr => pr.LinkToProducts);
+        cols.Command(com => com.Edit()).Title("Edit");
+        cols.Command(com => com.Destroy()).Title("Delete");
+    })
+    .ColumnMenu()
+    .Pageable(page => page.Refresh(true))
+    .Sortable()
+    .Groupable()
+    .Filterable()
+    .Editable(edit => edit.Mode(GridEditMode.PopUp))
+    .ToolBar(toolbar => toolbar.Create())
+    .DataSource(data =>
+        data
+            .Ajax()
+            .Model(m => m.Id(cat => cat.ID))
+            .Read(read => read.Action("Read", "Category"))
+                .Create(create => create.Action("Create", "Category"))
+                .Update(update => update.Action("Update", "Category"))
+                .Destroy(destroy => destroy.Action("Destroy", "Category"))
+            ))

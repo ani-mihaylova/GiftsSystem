@@ -1,4 +1,4 @@
-﻿namespace GiftsSystem.Data
+﻿namespace GiftsSystem.Models
 {
     using System;
     using System.Collections.Generic;

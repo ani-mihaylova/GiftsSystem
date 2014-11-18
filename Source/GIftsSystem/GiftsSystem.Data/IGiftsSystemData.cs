@@ -21,5 +21,7 @@
         IGenericRepository<GiftsList> GiftsLists { get; }
 
         int SaveChanges();
+
+        void Dispose();
     }
 }

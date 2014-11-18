@@ -11,6 +11,7 @@ namespace GiftsSystem.Web.ViewModels.Category
     public class CreateCategoryViewModel:IMapFrom<GiftsSystem.Models.Category>
     {
         [Required]
+        [UIHint("StringLineText")]
         public string Name { get; set; }
 
         [Required]
@@ -23,6 +24,9 @@ namespace GiftsSystem.Web.ViewModels.Category
         [Required]
         public int ParentCategoryID { get; set; }
 
-        public byte[] Image { get; set; }
+        public HttpPostedFileBase UploadedImage { get; set; }
+
+        public ICollection<SelectListItem> ParentCategories { get; set; }
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿@model GiftsSystem.Web.ViewModels.Category.CreateCategoryViewModel
-           @using System.Collections
+@using System.Collections
 @{
     ViewBag.Title = "Create";
 }
@@ -11,32 +11,32 @@
 
     <fieldset>
         <legend>Create Category</legend>
+        @Html.EditorFor(model=>model.Name)
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "col-lg-2 control-label" })
-            <div class="col-lg-10">
-                @Html.EditorFor(model => model.Name, new { placeholder = "Name",@class="form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description,new {@class="col-lg-2 control-label"})
+            @Html.LabelFor(model => model.Description, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
                 @Html.EditorFor(model => model.Description)
             </div>
+            @Html.ValidationMessageFor(m => m.Description)
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.ParentCategoryID,new {@class="col-lg-2 control-label"})
             <div class="col-lg-10">
-
-                @*@Html.Action("GetDropdown", "Category")*@
-                @Html.DropDownListFor(model => model.ParentCategoryID, ViewBag.CategoriesForDr as List<SelectListItem>, new { @class = "form-control" })
+              @Html.DropDownListFor(model=>model.ParentCategories,Model.ParentCategories, new { @class = "form-control" })              
             </div>
         </div>
+        <div class="form-group">
+            <label class = "col-lg-2 control-label">Image</label>
+            <div class="col-lg-10">
+                <input type="file" name="UploadedImage" class = "form-control"/>
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
                 <button class="btn btn-default">Cancel</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-        @*<input type="image" name="Image"/>*@
     </fieldset>
 }

@@ -1,5 +1,6 @@
 ﻿@model Dictionary<GiftsSystem.Models.Category, List<GiftsSystem.Models.Category>>
 @using System.Collections.Generic;
+@using GiftsSystem.Web.ViewModels.Home;
 @{
     ViewBag.Title = "Home Page";
 }
@@ -7,38 +8,14 @@
     <ul class="nav nav-tabs">
         @foreach (var category in Model)
         {
-            //if (category.Value.Count == 0)
-            //{
             <li>
                 <a href="#@category.Key.Name" data-toggle="tab">@category.Key.Name</a>
             </li>
-            @*}
-                else
-                {
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            @category.Key.Name <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            @foreach (var subCategory in category.Value)
-                            {
-                                <li>
-                                    <a href="#@subCategory.Name" data-toggle="tab">@subCategory.Name</a>
-                                </li>
-                                <li class="divider"></li>
-                            }
-                        </ul>
-                    </li>
-
-
-                }*@
         }
     </ul>
     <div id="myTabContent" class="col-md-8 tab-content">
         @foreach (var category in Model)
         {
-            //if (category.Value.Count == 0)
-            //{
             <div class="tab-pane fade" id="@category.Key.Name">
                 <div class="row">
                     @category.Key.Description
@@ -60,16 +37,36 @@
 
                 </div>
             </div>
-            @*}
-                else
-                {
-                    foreach (var subCategory in category.Value)
-                    {
-                        <div class="tab-pane fade" id="@subCategory.Name">
-                            <p>@subCategory.Description</p>
-                        </div>
-                    }
-                }*@
         }
     </div>
 </div>
+
+@(Html.Kendo()
+    .ListView<ListCategoryViewModels>()
+    .TagName("div")
+    .Name("all-tickets")
+    .Pageable()
+    .ClientTemplateId("all-tickets-template")
+    .DataSource(dataSource =>
+    {
+        dataSource
+            .ServerOperation(true)
+            .PageSize(15)
+            .Read(read => read.Action("ReadCategory", "Home" ));
+    }))
+
+
+<script type="text/x-kendo-tmpl" id="all-tickets-template">
+    <div class="row">
+        <div class="col-md-3">
+            <h3>#= Name #</h3>
+        </div>
+        <div class="col-md-4">
+            <p>#= Description #</p>
+        </div>
+        <div class="col-md-4">
+            <p>#= Description #</p>
+        </div>        
+    </div>
+</script>
+

@@ -197,9 +197,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\Base\AdminController.cs" />
+    <Compile Include="Areas\Administration\Controllers\Base\KendoGridAdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Administration\Controllers\ProductController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Category\EditCategoryViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -211,7 +214,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HtmlHelpers\KendoHelpers.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\Home\ListCategoryViewModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -462,6 +467,7 @@
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Content\kendo\images\kendoui.ttf" />
     <Content Include="Content\kendo\images\kendoui.woff" />
+    <Content Include="Areas\Administration\Views\Category\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\default-user-image.png" />
     <Content Include="Images\Home.jpg" />
@@ -1175,7 +1181,6 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Manage\_AdditionToManage.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Scripts\kendo\jquery.min.map" />
     <Content Include="Scripts\kendo\kendo.all.min.js.map" />
@@ -1295,14 +1300,29 @@
     <Content Include="Views\GiftsList\Edit.cshtml" />
     <Content Include="Views\GiftsList\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Home\NewIndex.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\StringLineText.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultiLineText.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\ViewModels\" />
-    <Folder Include="Areas\Administration\Views\Category\" />
+    <Folder Include="Areas\Administration\ViewModels\Product\" />
+    <Folder Include="Areas\Administration\ViewModels\User\" />
+    <Folder Include="Areas\Administration\Views\Admin\" />
+    <Folder Include="Areas\Administration\Views\KendoGridAdmin\" />
     <Folder Include="Areas\Administration\Views\Product\" />
     <Folder Include="Areas\Administration\Views\User\" />
-    <Folder Include="Libraries\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -1310,6 +1330,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GiftsSystem.Common\GiftsSystem.Common.csproj">
+      <Project>{b0390894-e301-43ec-87dd-34c7cec622af}</Project>
+      <Name>GiftsSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GiftsSystem.Data.Common\GiftsSystem.Contracts.csproj">
       <Project>{69e1cf6c-f69b-4162-9823-bc424008342c}</Project>
       <Name>GiftsSystem.Contracts</Name>

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
@@ -49,11 +50,14 @@
                     Value = item.ID.ToString()
                 });
             }
-            ViewBag.CategoriesForDr = categoriesSelection;
+            newModel.ParentCategories = categoriesSelection;
+
+            //ViewBag.CategoriesForDr = categoriesSelection;
             return this.View(newModel);
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateCategoryViewModel newCategory)
         {
@@ -71,6 +75,21 @@
                 ParentCategory = parentCategory,
                 Products = new List<Product>()
             };
+
+            if (newCategory.UploadedImage != null)
+            {
+                using (var memory = new MemoryStream())
+                {
+                    newCategory.UploadedImage.InputStream.CopyTo(memory);
+                    var content = memory.GetBuffer();
+
+                    category.Image = new Image
+                    {
+                        Content = content,
+                        FileExtension = newCategory.UploadedImage.FileName.Split(new[] { '.' }).Last()
+                    };
+                }
+            }
 
             this.data.Categories.Add(category);
             this.data.SaveChanges();
@@ -100,7 +119,7 @@
             {
                 this.data.Categories.UpdateValues(c => new
                 {
-                    ID=model.ID,
+                    ID = model.ID,
                     Name = model.Name,
                     Products = model.Products,
                     Description = model.Description

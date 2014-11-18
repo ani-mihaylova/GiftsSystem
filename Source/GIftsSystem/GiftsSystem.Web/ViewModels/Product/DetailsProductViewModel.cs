@@ -26,6 +26,6 @@
 
         public byte[] Image { get; set; }
 
-        public virtual GiftsSystem.Models.Category CategoryID { get; set; }
+        public GiftsSystem.Models.Category CategoryID { get; set; }
     }
 }
