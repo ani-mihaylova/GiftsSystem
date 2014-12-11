@@ -22,5 +22,6 @@ using GiftSystem.Web.Infrastructure.Mapping;
 
         public double Price { get; set; }
 
+
     }
 }

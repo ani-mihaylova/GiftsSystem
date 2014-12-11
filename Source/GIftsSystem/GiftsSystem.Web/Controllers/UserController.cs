@@ -14,6 +14,7 @@ using GiftsSystem.Web.ViewModels.User;
 using System.IO;
 using GiftsSystem.Common;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace GiftsSystem.Web.Controllers
 {
@@ -120,6 +121,7 @@ namespace GiftsSystem.Web.Controllers
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
         //}
+
         public ActionResult Image(int id)
         {
             var image = this.data.Images.GetById(id);
@@ -137,7 +139,7 @@ namespace GiftsSystem.Web.Controllers
             {
                 return this.Redirect("/");
             }
-
+            
             var results = this.data.Users
                 .All()
                 .Where(u => u.UserName.Contains(inputUser))

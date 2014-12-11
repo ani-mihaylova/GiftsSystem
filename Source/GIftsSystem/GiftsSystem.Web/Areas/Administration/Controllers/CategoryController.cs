@@ -48,6 +48,11 @@
             if (dbModel != null)
             {
                 model.ID = dbModel.ID;
+                var parentCategory = this.data.Categories.All().FirstOrDefault(c => c.Name == model.ParentCategoryName);
+                dbModel.ParentCategory = parentCategory;
+                model.ParentCategoryName = parentCategory.Name;
+                //this.data.Categories.Add(dbModel);
+                this.data.SaveChanges();
             }
 
             return this.GridOperation(model, request);
@@ -57,6 +62,14 @@
         public ActionResult Update([DataSourceRequest]DataSourceRequest request, ViewModel model)
         {
             base.Update<Model, ViewModel>(model, model.ID);
+            var parentCategory = this.data.Categories
+                .All()
+                .FirstOrDefault(c => c.Name == model.ParentCategoryName);
+
+            var dbModel = this.data.Categories.GetById(model.ID);
+            dbModel.ParentCategory = parentCategory;
+
+            this.data.SaveChanges();
             return this.GridOperation(model, request);
         }
 
@@ -66,7 +79,8 @@
             if (model != null && ModelState.IsValid)
             {
                 var category = this.data.Categories.GetById(model.ID);
-                this.data.Categories.Delete(model.ID);           
+                this.data.Categories.ActualDelete(category);
+                this.data.SaveChanges();
                 return this.GridOperation(model, request);
             }
            
