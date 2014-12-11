@@ -25,37 +25,35 @@
                 @Html.ActionLink("Gifts system", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+
                 <ul class="nav navbar-nav">
-                    @*@if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole(GiftsSystem.Common.GlobalConstants.CompanyRoleName))
-                        {*@
+                        {
                             <li>@Html.ActionLink("Create Category", "Create", "Category", new { area = string.Empty }, null)</li>
                             <li>@Html.ActionLink("Create Product", "Create", "Product", new { area = string.Empty }, null)</li>
-                        @*}
-                        if (User.IsInRole(GiftsSystem.Common.GlobalConstants.AdminRoleName))
-                        {*@
-                            <li>
-                                Administration
-                                <ul>
-                                    <li>@Html.ActionLink("Edit Category", "Index", "Category", new { area = "Administration" }, null)</li>
-                                    <li>@Html.ActionLink("Edit Product", "Create", "Product", new { area = "Administration" }, null)</li>
-                                </ul>
-                            </li>
                         }
-                    }
+                        if (User.IsInRole(GiftsSystem.Common.GlobalConstants.AdminRoleName))
+                        {
+                            <li>@Html.ActionLink("Edit Category", "Index", "Category", new { area = "Administration" }, null)</li>
+                            <li>@Html.ActionLink("Edit Product", "Create", "Product", new { area = "Administration" }, null)</li>
+                        }
 
+                    }
                 </ul>
+                @Html.Partial("_SearchForUser");
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
-        <br/>
+        <br />
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Gifts</p>
         </footer>
     </div>
     @Scripts.Render("~/bundles/kendo")

@@ -1,0 +1,55 @@
+﻿@model GiftsSystem.Web.ViewModels.User.DetailsUserViewModel
+@{
+    ViewBag.Title = "ShowDetails";
+}
+
+<h1>ShowDetails</h1>
+<div class="jumbotron">
+    <h2>@Model.UserName</h2>
+    <div>
+        @if (Model.ImageId != null)
+        {
+            <img src="@Url.Action("Image", "User", new { id = Model.ImageId.Value })" alt="@Model.UserName" class="img-responsive" width="200" />
+        }
+    </div>
+    <h3>Gifts collections</h3>
+    @foreach (var collection in Model.GiftsCollections)
+    {
+        <div>
+            <h4>@collection.Name</h4>
+            <ul>
+                @foreach (var product in collection.Products)
+                {
+                    <li>
+                        @product.Name
+                        @Html.Display("BuyProduct", "BuyProduct", new { id=product.ID})
+                        @*@using (Ajax.BeginForm("ByeProduct", "Product", product.ID, new AjaxOptions()
+        {
+            OnSuccess = "OnAjaxRequestSuccessBye",
+            HttpMethod = "POST"
+        }))
+                        {
+                            <input type="hidden" name="id" value="@product.ID" />
+                            <input type="submit" id="ajaxBtnBye" value="Bye Product" class="btn btn-primary" />
+
+                        }*@
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+
+</div>
+
+@*@section Scripts{
+    <script type="text/javascript">
+
+        function OnAjaxRequestSuccess(data) {
+            $("#ajaxBtn").addClass("disabled");
+        }
+
+        function OnAjaxRequestSuccessBye(data) {
+            $("#ajaxBtnBye").addClass("disabled");
+        }
+    </script>
+}*@

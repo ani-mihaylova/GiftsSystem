@@ -1,0 +1,49 @@
+﻿@model Dictionary<GiftsSystem.Models.Category, List<GiftsSystem.Models.Category>>
+@section styles {
+    @Styles.Render("~/Content/custom")
+    @RenderSection("styles", required: false)
+}
+<div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+    <!-- Carousel indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+        @{
+            string activeItemClass = "active item";
+        }
+        @foreach (var category in Model)
+        {
+            <div class="@activeItemClass">
+                <h2>
+                    @if (category.Key.ImageId != null)
+                    {
+                        <img src="@Url.Action("Image", "Category", new { id = category.Key.ImageId })" alt="No image" class="img-responsive" />
+                    }
+                </h2>
+                <div class="carousel-caption">
+                    <h3>@category.Key.Name</h3>
+                    <p>@category.Key.Description</p>
+                </div>
+            </div>
+                    if (activeItemClass == "active item")
+                    {
+                        activeItemClass = "item";
+                    }
+
+        }
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+

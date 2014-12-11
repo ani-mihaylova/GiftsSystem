@@ -68,6 +68,23 @@ namespace GiftsSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            //if (ModelState.IsValid)
+            //{
+            //    var user = await UserManager.FindAsync(model.Email, model.Password);
+            //    if (user != null)
+            //    {
+            //        await SignInAsync(user, model.RememberMe);
+            //        return RedirectToLocal(returnUrl);
+            //    }
+            //    else
+            //    {
+            //        ModelState.AddModelError("", "Invalid username or password.");
+            //    }
+            //}
+
+            // //If we got this far, something failed, redisplay form
+            //return View(model);
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -156,7 +173,7 @@ namespace GiftsSystem.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.Username, Email = model.Email };
+                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

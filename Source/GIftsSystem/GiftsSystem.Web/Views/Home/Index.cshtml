@@ -4,15 +4,18 @@
 @{
     ViewBag.Title = "Home Page";
 }
+
 <div class="row">
-    <ul class="nav nav-tabs">
-        @foreach (var category in Model)
-        {
-            <li>
-                <a href="#@category.Key.Name" data-toggle="tab" class="big-text">@category.Key.Name</a>
-            </li>           
-        }
-    </ul>
+    <div class="col-md-9">
+        <ul class="nav nav-tabs">
+            @foreach (var category in Model)
+            {
+                <li>
+                    <a href="#@category.Key.Name" data-toggle="tab" class="big-text">@category.Key.Name</a>
+                </li>
+            }
+        </ul>
+    </div>   
     <div id="myTabContent" class="col-md-8 tab-content">
         @foreach (var category in Model)
         {
@@ -37,30 +40,34 @@
                 </div>
             </div>
         }
-    </div>
+    </div>   
 </div>
 
-@(Html.Kendo()
-    .ListView<ListCategoryViewModels>()
-    .TagName("div")
-    .Name("all-tickets")
-    .ClientTemplateId("all-tickets-template")
-    .DataSource(dataSource =>
-    {
-        dataSource
-            .ServerOperation(true)
-            .Read(read => read.Action("ReadCategory", "Home"));
-    }))
+<div class="row">
+    @Html.Partial("_MainCategories", Model)
+</div>
+
+@*@(Html.Kendo()
+        .ListView<ListCategoryViewModels>()
+        .TagName("div")
+        .Name("all-tickets")
+        .ClientTemplateId("all-tickets-template")
+        .DataSource(dataSource =>
+        {
+            dataSource
+                .ServerOperation(true)
+                .Read(read => read.Action("ReadCategory", "Home"));
+        }))
 
 
-<script type="text/x-kendo-tmpl" id="all-tickets-template">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h1 class="panel-title text-center">#= Name #</h1>
+    <script type="text/x-kendo-tmpl" id="all-tickets-template">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title text-center">#= Name #</h1>
+            </div>
+            <div class="panel-body text-center">
+                #= Description #
+            </div>
         </div>
-        <div class="panel-body text-center">           
-             #= Description #
-        </div>
-    </div>      
-</script>
+    </script>*@
 

@@ -111,6 +111,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -238,6 +239,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.united.css" />
     <Content Include="Content\bootstrap.united.min.css" />
+    <Content Include="Content\DisplayCategories.css" />
     <Content Include="Content\kendo\Black\editor.png" />
     <Content Include="Content\kendo\Black\imagebrowser.png" />
     <Content Include="Content\kendo\Black\indeterminate.gif" />
@@ -473,8 +475,7 @@
     <Content Include="Areas\Administration\Views\Product\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\default-user-image.png" />
-    <Content Include="Images\Home.jpg" />
-    <Content Include="Images\start.jpg" />
+    <Content Include="Images\Start.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -1316,6 +1317,11 @@
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Home\_MainCategories.cshtml" />
+    <Content Include="Views\Shared\_SearchForUser.cshtml" />
+    <Content Include="Views\User\SearchResult.cshtml" />
+    <Content Include="Views\User\ShowDetails.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\BuyProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

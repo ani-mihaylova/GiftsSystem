@@ -10,10 +10,12 @@
 
     @if (Model.ImageId != null)
     {
-        <img src="@Url.Action("Image", "Category", new { id = Model.ImageId.Value })" alt="@Model.Name" class="img-responsive" />
+        <img src="@Url.Action("Image", "Category", new { id = Model.ImageId.Value })" alt="@Model.Name" class="img-responsive" width="300" />
     }    
-   
-    <p><a href="@string.Format("/Category/Edit/{0}",Model.Name)" class="btn btn-primary btn-lg">Edit category</a></p>
+    @if (User.IsInRole(GiftsSystem.Common.GlobalConstants.CompanyRoleName))
+    {
+        <p><a href="@string.Format("/Category/Edit/{0}",Model.Name)" class="btn btn-primary btn-lg">Edit category</a></p>
+    }   
 </div>
 <div class="row">
     <div class="col-md-4">

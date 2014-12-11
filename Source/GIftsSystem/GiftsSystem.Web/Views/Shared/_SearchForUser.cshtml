@@ -1,0 +1,11 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    using (Html.BeginForm("Search", "User", FormMethod.Post, new { @class = "navbar-form navbar-left" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <input type="text" class="form-control" id="inputUser" name="inputUser">
+        </div>
+        <button type="submit" class="btn btn-primary">Find user</button>
+    }
+}

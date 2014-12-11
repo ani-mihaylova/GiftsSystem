@@ -5,10 +5,13 @@ namespace GiftsSystem.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
     using GiftsSystem.Common;
-    using GiftsSystem.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity;
+    using System.IO;
+    using System.Drawing;
+    using GiftsSystem.Models;
+    using System.Net.Mime;
 
     public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
@@ -18,7 +21,7 @@ namespace GiftsSystem.Data.Migrations
         {
             //TODO:Remove in production
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(ApplicationDbContext context)
@@ -50,13 +53,13 @@ namespace GiftsSystem.Data.Migrations
             var adminUser = new ApplicationUser
             {
                 Email = "admin@mysite.com",
-                UserName = "Administrator"
+                UserName = "admin@mysite.com"
             };
 
             var companyUser = new ApplicationUser
             {
                 Email = "cmompany@mysite.com",
-                UserName = "Company"
+                UserName = "cmompany@mysite.com"
             };
 
             this.userManager.Create(companyUser, "admin123456");
@@ -82,6 +85,33 @@ namespace GiftsSystem.Data.Migrations
                 new Category(){ Name="Sport"}
                
            };
+
+            List<string> imagePaths = new List<string>()
+            {
+                @"D:\TelerikAcademy\ASP.NET MVC\Project-GiftsSystem\GiftsSystem\Source\GIftsSystem\GiftsSystem.Common\Images\Home.jpg",
+                @"D:\TelerikAcademy\ASP.NET MVC\Project-GiftsSystem\GiftsSystem\Source\GIftsSystem\GiftsSystem.Common\Images\fashion.jpg",
+                @"D:\TelerikAcademy\ASP.NET MVC\Project-GiftsSystem\GiftsSystem\Source\GIftsSystem\GiftsSystem.Common\Images\Electronics.jpg",
+                @"D:\TelerikAcademy\ASP.NET MVC\Project-GiftsSystem\GiftsSystem\Source\GIftsSystem\GiftsSystem.Common\Images\Art.jpg",
+                @"D:\TelerikAcademy\ASP.NET MVC\Project-GiftsSystem\GiftsSystem\Source\GIftsSystem\GiftsSystem.Common\Images\Sports.jpg"
+            };
+
+            for (int i = 0; i < imagePaths.Count; i++)
+            {
+                var img = System.Drawing.Image.FromFile(imagePaths[i]);
+
+                MemoryStream ms = new MemoryStream();
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                var imageAsArr = ms.ToArray();
+
+                var newImage = new Models.Image();
+                newImage.Content = imageAsArr;
+                newImage.FileExtension = "jpeg";
+                context.Images.Add(newImage);
+
+                categories[i].Image = newImage;
+
+            }
+
 
             foreach (var item in categories)
             {

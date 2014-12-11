@@ -1,15 +1,16 @@
 ﻿namespace GiftsSystem.Web.Controllers
 {
     using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using GiftsSystem.Data;
-using GiftsSystem.Models;
-using GiftsSystem.Web.ViewModels.Category;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+    using GiftsSystem.Data;
+    using GiftsSystem.Models;
+    using GiftsSystem.Web.ViewModels.Category;
 
     public class CategoryController : BaseController
     {
@@ -60,39 +61,36 @@ using GiftsSystem.Web.ViewModels.Category;
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateCategoryViewModel newCategory)
+        public ActionResult Create(CreateCategoryViewModel categoryModel)
         {
             if (!ModelState.IsValid)
             {
-                return this.View(newCategory);
+                return this.View(categoryModel);
             }
 
-            var parentCategory = this.data.Categories.All().FirstOrDefault(c => c.ID.ToString() == newCategory.ParentCategoryId);
-            var category = new Category()
-            {
-                Name = newCategory.Name,
-                Description = newCategory.Description,
-                CreatedOn = DateTime.Now,
-                ParentCategory = parentCategory,
-                Products = new List<Product>()
-            };
+            var parentCategory = this.data.Categories.All()
+                .FirstOrDefault(c => c.ID.ToString() == categoryModel.ParentCategoryId);
 
-            if (newCategory.UploadedImage != null)
+            var newCategory = Mapper.Map<Category>(categoryModel);
+            newCategory.ParentCategory = parentCategory;
+            newCategory.CreatedOn = DateTime.Now;
+
+            if (categoryModel.UploadedImage != null)
             {
                 using (var memory = new MemoryStream())
                 {
-                    newCategory.UploadedImage.InputStream.CopyTo(memory);
+                    categoryModel.UploadedImage.InputStream.CopyTo(memory);
                     var content = memory.GetBuffer();
 
-                    category.Image = new Image
+                    newCategory.Image = new Image
                     {
                         Content = content,
-                        FileExtension = newCategory.UploadedImage.FileName.Split(new[] { '.' }).Last()
+                        FileExtension = categoryModel.UploadedImage.FileName.Split(new[] { '.' }).Last()
                     };
                 }
             }
 
-            this.data.Categories.Add(category);
+            this.data.Categories.Add(newCategory);
             this.data.SaveChanges();
 
             return this.Redirect("/");

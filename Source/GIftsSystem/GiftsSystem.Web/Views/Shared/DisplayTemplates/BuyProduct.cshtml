@@ -1,0 +1,24 @@
+﻿
+@using (Ajax.BeginForm("ByeProduct", "Product", ViewData["id"], new AjaxOptions()
+        {
+            OnSuccess = "OnAjaxRequestSuccessBye",
+            HttpMethod = "POST"
+        }))
+{
+    <input type="hidden" name="id" value="@ViewData["id"]" />
+    <input type="submit" id="ajaxBtnBye" value="Bye Product" class="btn btn-primary" />
+
+}
+
+@section Scripts{
+    <script type="text/javascript">
+
+        function OnAjaxRequestSuccess(data) {
+            $("#ajaxBtn").addClass("disabled");
+        }
+
+        function OnAjaxRequestSuccessBye(data) {
+            $("#ajaxBtnBye").addClass("disabled");
+        }
+    </script>
+}

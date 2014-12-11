@@ -31,7 +31,8 @@ namespace GiftsSystem.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.flatly.css",
                       "~/Content/site.css"));
-
+             bundles.Add(new StyleBundle("~/Content/custom").Include(
+                      "~/Content/DisplayCategories.css"));
 
         }
 

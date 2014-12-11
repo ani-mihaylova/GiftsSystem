@@ -12,6 +12,8 @@ using AutoMapper.QueryableExtensions;
 using AutoMapper;
 using GiftsSystem.Web.ViewModels.User;
 using System.IO;
+using GiftsSystem.Common;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GiftsSystem.Web.Controllers
 {
@@ -127,6 +129,31 @@ namespace GiftsSystem.Web.Controllers
             }
 
             return File(image.Content, "image/" + image.FileExtension);
+        }
+
+        public ActionResult Search(string inputUser)
+        {
+            if (inputUser==null || inputUser==string.Empty)
+            {
+                return this.Redirect("/");
+            }
+
+            var results = this.data.Users
+                .All()
+                .Where(u => u.UserName.Contains(inputUser))
+                .ToList();
+
+            return this.View("SearchResult", results);
+        }
+
+        public ActionResult ShowDetails(string id)
+        {
+            var userToShow = this.data.Users
+                .All()
+                .Where(u => u.Id == id)
+                .Project().To<DetailsUserViewModel>().FirstOrDefault();
+
+            return this.View("ShowDetails", userToShow);
         }
     }
 }
