@@ -10,13 +10,13 @@
     <dl class="dl-horizontal">
         <dt>
             @Html.LabelFor(model => model.ImageId)
-            
+
         </dt>
         <dd>
-           @if (Model.ImageId != null)
-           {
-            <img src="@Url.Action("Image", "User", new { id = Model.ImageId.Value })" alt="@Model.UserName" class="img-responsive" width="200" />
-           }
+            @if (Model.ImageId != null)
+            {
+                <img src="@Url.Action("Image", "User", new { id = Model.ImageId.Value })" alt="@Model.UserName" class="img-responsive" width="200" />
+            }
         </dd>
 
         <dt>
@@ -38,7 +38,26 @@
                     </ul>
                 }
             }
-           
+
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.ShoppingCart)
+        </dt>
+        <dd>
+            @if (Model.ShoppingCart != null)
+            {
+                <ul class="list-group">
+                    @foreach (var product in Model.ShoppingCart.Products)
+                    {
+                        if (Model.ShoppingCart.BoughtProducts.ContainsKey(product.ID))
+                        {
+                            <li class="list-group-item">
+                                @Html.ActionLink(product.Name, "Details", "ShoppingCart")
+                            </li>
+                        }
+                    }
+                </ul>
+            }
         </dd>
     </dl>
 </div>
@@ -47,8 +66,8 @@
         @Html.ActionLink("EditProfile", "Edit", new { id = Model.ID }, new { @class = "btn btn-info" })
     </div>
     @*<div class="panel-body">
-        @Html.ActionLink("EditCollections", "Edit", "GiftsList", Model.GiftsCollections, new { @class = "btn btn-info" })
-    </div>*@
+            @Html.ActionLink("EditCollections", "Edit", "GiftsList", Model.GiftsCollections, new { @class = "btn btn-info" })
+        </div>*@
     <div class="panel-body">
         @Html.ActionLink("CreateCollections", "Create", "GiftsList", Model.GiftsCollections, new { @class = "btn btn-info" })
     </div>

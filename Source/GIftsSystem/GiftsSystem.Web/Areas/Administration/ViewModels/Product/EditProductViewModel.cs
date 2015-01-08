@@ -2,16 +2,21 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web;
-using GiftSystem.Web.Infrastructure.Mapping;
+    using System.Web.Mvc;
+    using AutoMapper;
+    using GiftSystem.Web.Infrastructure.Mapping;
 
-    public class EditProductViewModel:IMapFrom<GiftsSystem.Models.Product>
+    [Bind(Exclude = "CategoryNames")]
+    public class EditProductViewModel : IMapFrom<GiftsSystem.Models.Product>, IHaveCustomMappings
     {
         public int ID { get; set; }
 
         public string Name { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         public string Condition { get; set; }
@@ -22,6 +27,15 @@ using GiftSystem.Web.Infrastructure.Mapping;
 
         public double Price { get; set; }
 
+        public string CategoryName { get; set; }
 
+        public IEnumerable<SelectListItem> CategoryNames { get; set; }
+
+        public void CreateMappings(IConfiguration configuration)
+        {
+            configuration.CreateMap<GiftsSystem.Models.Product, EditProductViewModel>()
+                .ForMember(p => p.CategoryName, opt => opt.MapFrom(t => t.Category.Name))
+                .ReverseMap();
+        }
     }
 }

@@ -4,6 +4,6 @@
     @Html.LabelFor(model => model, new { @class = "col-lg-2 control-label" })
     <div class="col-lg-10">
         @Html.TextBoxFor(model => model, new { placeholder = "Name", @class = "form-control" })
-    </div>
-    @Html.ValidationMessageFor(m => m)
+        @Html.ValidationMessageFor(m => m)
+    </div>    
 </div>

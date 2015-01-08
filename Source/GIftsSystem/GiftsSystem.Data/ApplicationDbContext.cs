@@ -28,6 +28,8 @@
 
         public virtual IDbSet<Product> Products { get; set; }
 
+        public virtual IDbSet<PaymentInfo> PaymentInfos { get; set; }
+
         public virtual IDbSet<Category> Categories { get; set; }
 
         public virtual IDbSet<GiftsList> GiftsLists { get; set; }

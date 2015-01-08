@@ -20,6 +20,8 @@
 
         IGenericRepository<GiftsList> GiftsLists { get; }
 
+        IGenericRepository<PaymentInfo> PaymentInfos { get; }
+
         IGenericRepository<Image> Images { get; }
 
         int SaveChanges();

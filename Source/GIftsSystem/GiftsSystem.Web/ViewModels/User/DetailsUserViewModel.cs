@@ -17,12 +17,15 @@
 
         public ICollection<GiftsList> GiftsCollections { get; set; }
 
+        public GiftsList ShoppingCart { get; set; }
+
         public int? ImageId { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<ApplicationUser, DetailsUserViewModel>()
-                .ForMember(m => m.GiftsCollections, opt => opt.MapFrom(t => t.GiftsCollections))              
+                .ForMember(m => m.GiftsCollections, opt => opt.MapFrom(t => t.GiftsCollections))
+                .ForMember(m => m.ShoppingCart, opt => opt.MapFrom(t => t.ShoppingCart))
                 .ReverseMap();
         }
     }

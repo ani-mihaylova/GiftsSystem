@@ -1,0 +1,28 @@
+﻿@model ICollection<GiftsSystem.Web.ViewModels.Product.ListProductsViewModel>
+@{
+    ViewBag.Title = "ListProducts";
+}
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Results</div>
+    <div class="panel-body">
+        <p>The following products are currently available on our store.</p>
+    </div>
+    <!-- List group -->
+    <div class="list-group">
+        @foreach (var product in Model)
+        {
+            <a href="@Url.Action("Details","Product",new{id=product.ID})" class="list-group-item">
+
+                @if (product.ImageId != null)
+                {
+                    <img src="@Url.Action("Image", "Product", new { id = product.ImageId.Value})" alt="@product.Name" class="img-responsive" width="100" />
+                }
+                @Html.Label(product.Name)
+                @Html.Label(product.CategoryName)
+                @*@Html.Label(product.Price)*@
+            </a>
+        }
+    </div>
+</div>

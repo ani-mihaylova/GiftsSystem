@@ -7,8 +7,8 @@
     <ProjectGuid>{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GiftSystem.Web.Infrastructure</RootNamespace>
-    <AssemblyName>GiftSystem.Web.Infrastructure</AssemblyName>
+    <RootNamespace>GiftsSystem.Web.Infrastructure</RootNamespace>
+    <AssemblyName>GiftsSystem.Web.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

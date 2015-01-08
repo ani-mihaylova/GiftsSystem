@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Web", "GiftsSys
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Contracts", "GiftsSystem.Data.Common\GiftsSystem.Contracts.csproj", "{69E1CF6C-F69B-4162-9823-BC424008342C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftSystem.Web.Infrastructure", "GiftSystem.Web.Infrastructure\GiftSystem.Web.Infrastructure.csproj", "{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Web.Infrastructure", "GiftSystem.Web.Infrastructure\GiftsSystem.Web.Infrastructure.csproj", "{CC98ADB5-43EE-4FF4-9D60-8104ED7A4A7B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftsSystem.Common", "GiftsSystem.Common\GiftsSystem.Common.csproj", "{B0390894-E301-43EC-87DD-34C7CEC622AF}"
 EndProject

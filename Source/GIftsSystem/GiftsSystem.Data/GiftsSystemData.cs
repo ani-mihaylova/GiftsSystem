@@ -49,6 +49,12 @@
             get { return this.GetRepository<GiftsList>(); }
         }
 
+        public IGenericRepository<PaymentInfo> PaymentInfos
+        {
+            get { return this.GetRepository<PaymentInfo>(); }
+        }
+
+
         public IGenericRepository<Image> Images
         {
             get { return this.GetRepository<Image>(); }

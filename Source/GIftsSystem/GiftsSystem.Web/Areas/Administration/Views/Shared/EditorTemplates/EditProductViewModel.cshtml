@@ -1,0 +1,26 @@
+﻿@using GiftsSystem.Web.Areas.Administration.ViewModels.Product;
+@model EditProductViewModel
+
+@Html.DisplayFor(m => m.Name)
+@Html.EditorFor(m => m.Name)
+
+@if (ViewBag.CategoryNames != null)
+{
+    Html.DisplayFor(m => m.CategoryName);
+    Html.DropDownListFor(m => m.CategoryName, ViewBag.CategoryNames as SelectList);
+}
+
+@Html.DisplayFor(m => m.Description)
+@Html.EditorFor(m => m.Description)
+
+
+
+@*
+    public string Condition { get; set; }
+
+    public DateTime ExpirationDate { get; set; }
+
+    public int Quantity { get; set; }
+
+    public double Price { get; set; }
+*@

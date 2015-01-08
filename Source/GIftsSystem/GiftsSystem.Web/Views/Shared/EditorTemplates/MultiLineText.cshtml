@@ -4,7 +4,8 @@
     @Html.LabelFor(model => model, new { @class = "col-lg-2 control-label" })
     <div class="col-lg-10">
         @Html.TextAreaFor(model => model, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m)
     </div>
-    @Html.ValidationMessageFor(m => m)
+   
 </div>
 

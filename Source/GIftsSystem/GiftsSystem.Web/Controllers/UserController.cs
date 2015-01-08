@@ -140,9 +140,11 @@ namespace GiftsSystem.Web.Controllers
                 return this.Redirect("/");
             }
             
+            var currentUser=this.GetCurrentUser();
+
             var results = this.data.Users
                 .All()
-                .Where(u => u.UserName.Contains(inputUser))
+                .Where(u => u.UserName.Contains(inputUser) && u.Id!=currentUser.Id)
                 .ToList();
 
             return this.View("SearchResult", results);

@@ -211,6 +211,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,6 +228,9 @@
     <Compile Include="ViewModels\Home\CategoryIndexViewModel.cs" />
     <Compile Include="ViewModels\Product\CreateProductViewModel.cs" />
     <Compile Include="ViewModels\Product\DetailsProductViewModel.cs" />
+    <Compile Include="ViewModels\Product\ListProductsViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCart\CreatePaymentInfoViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCart\ShoppingCartMainViewModel.cs" />
     <Compile Include="ViewModels\User\DetailsUserViewModel.cs" />
     <Compile Include="ViewModels\User\EditUserViewModel.cs" />
   </ItemGroup>
@@ -473,6 +477,8 @@
     <Content Include="Content\kendo\images\kendoui.woff" />
     <Content Include="Areas\Administration\Views\Category\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\DropdownList.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\EditProductViewModel.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\default-user-image.png" />
     <Content Include="Images\Start.jpg" />
@@ -1322,6 +1328,12 @@
     <Content Include="Views\User\SearchResult.cshtml" />
     <Content Include="Views\User\ShowDetails.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\BuyProduct.cshtml" />
+    <Content Include="Views\Shared\_SearchForProduct.cshtml" />
+    <Content Include="Views\Product\ListProducts.cshtml" />
+    <Content Include="Views\ShoppingCart\Details.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Pay.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SubmitAndCancleBtns.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1352,9 +1364,9 @@
       <Project>{20a46fae-b370-4427-9a04-8bf5797a50e1}</Project>
       <Name>GiftsSystem.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GiftSystem.Web.Infrastructure\GiftSystem.Web.Infrastructure.csproj">
+    <ProjectReference Include="..\GiftSystem.Web.Infrastructure\GiftsSystem.Web.Infrastructure.csproj">
       <Project>{cc98adb5-43ee-4ff4-9d60-8104ed7a4a7b}</Project>
-      <Name>GiftSystem.Web.Infrastructure</Name>
+      <Name>GiftsSystem.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

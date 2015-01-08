@@ -24,6 +24,9 @@
         // GET: Administration/Product
         public ActionResult Index()
         {
+            var catNames = this.data.Categories.All().Select(c => c.Name);
+            var list = new SelectList(catNames);
+            this.ViewBag.CategoryNames = list;
             return View();
         }
 
@@ -44,6 +47,12 @@
             if (dbModel != null)
             {
                 model.ID = dbModel.ID;
+                var category = this.data.Categories.All().FirstOrDefault(c => c.Name == model.CategoryName);
+                dbModel.Category = category;
+                category.Products.Add(dbModel);
+                model.CategoryName = category.Name;
+
+                this.data.SaveChanges();
             }
 
             return this.GridOperation(model, request);
@@ -53,6 +62,20 @@
         public ActionResult Update([DataSourceRequest]DataSourceRequest request, ViewModel model)
         {
             base.Update<Model, ViewModel>(model, model.ID);
+
+            var dbModel = this.data.Products.GetById(model.ID);
+
+            if (model.CategoryName!=null && dbModel.Category.Name!=model.CategoryName)
+            {
+                var newCategory = this.data.Categories.All().FirstOrDefault(c => c.Name == model.CategoryName);
+                dbModel.Category.Products.Remove(dbModel);
+                dbModel.Category = newCategory;
+                newCategory.Products.Add(dbModel);
+
+                
+            }
+
+            this.data.SaveChanges();
             return this.GridOperation(model, request);
         }
 
@@ -62,8 +85,8 @@
             if (model != null && ModelState.IsValid)
             {
                 var product = this.data.Products.GetById(model.ID);
-                this.data.Products.Delete(model.ID);
-                return this.GridOperation(model, request);
+                this.data.Products.ActualDelete(product);
+                this.data.SaveChanges();                
             }
 
             return this.GridOperation(model, request);
