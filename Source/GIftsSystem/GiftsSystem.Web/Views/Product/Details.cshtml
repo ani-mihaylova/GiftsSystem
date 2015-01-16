@@ -1,0 +1,102 @@
+﻿@model GiftsSystem.Web.ViewModels.Product.DetailsProductViewModel
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="jumbotron">
+    <h1>@Model.Name</h1>
+    <div class="pull-right">@Model.Description</div>
+    <div>
+        @{
+            if (Model.ImageId != null)
+            {
+                <img src="@Url.Action("Image", "Product", new { id = Model.ImageId.Value })" alt="@Model.Name" class="img-responsive" width="300" />
+            }
+        }
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @Html.LabelFor(model => Model.Price, new { @class = "form-label big-text" })
+            @Model.Price
+        </div>
+        <div class="panel-body">
+            @Html.LabelFor(model => Model.Quantity, new { @class = "form-label medium-text" })
+            @Model.Quantity
+        </div>
+        <div class="panel-body">
+            @Html.LabelFor(model => Model.ExpirationDate, new { @class = "form-label medium-text" })
+            @Model.ExpirationDate
+        </div>
+        <div class="panel-body">
+            @Html.LabelFor(model => Model.Condition, new { @class = "form-label medium-text" })
+            @Model.Condition
+        </div>
+        <div class="panel-body">
+            @Html.LabelFor(model => Model.CategoryName, new { @class = "form-label medium-text" })
+            @Model.CategoryName
+        </div>
+        <div class="panel-body">
+            @Html.LabelFor(model => Model.IsBought, new { @class = "form-label medium-text" })
+            @Model.IsBought
+        </div>
+        <div class="panel-body">
+            @{
+                var isUserHaveProduct = ViewBag.IsUserHaveProduct;
+                if (isUserHaveProduct == true)
+                {
+                    <button class="btn btn-primary disabled">Add to WishList</button>
+                }
+                else
+                {
+
+                    using (Ajax.BeginForm("AddToWishList", "Product", Model.ID, new AjaxOptions()
+                    {
+                        OnSuccess = "OnAjaxRequestSuccess",
+                        HttpMethod = "POST"
+                    }))
+                    {
+                        <input type="hidden" name="id" value="@Model.ID" />
+                        <input type="submit" id="ajaxBtn" value="Add To WishList" class="btn btn-primary" />
+                        @Html.DropDownList("userCollection", ViewBag.UserCollections as List<SelectListItem>)
+                    }
+                }
+            }
+
+        </div>
+    </div>
+
+    <p>
+        @*@Html.Display("BuyProduct", "BuyProduct", new { id = Model.ID })*@
+        @using (Ajax.BeginForm("ByeProduct", "ShoppingCart", Model.ID, new AjaxOptions()
+        {
+            OnSuccess = "OnAjaxRequestSuccessBye",
+            HttpMethod = "POST",
+            UpdateTargetId = "shoppingCart",
+            InsertionMode = InsertionMode.Replace
+        }))
+        {
+            <input type="hidden" name="id" value="@Model.ID" />
+            <input type="submit" id="ajaxBtnBye" value="Bye Product" class="btn btn-primary" />
+        }
+    </p>
+</div>
+@*@section scripts{
+     @RenderSection("Scripts1", required: false)
+    }*@
+@section Scripts{
+    <script type="text/javascript">
+
+        function OnAjaxRequestSuccess(data) {
+            $("#ajaxBtn").addClass("disabled");
+        }
+
+        function OnAjaxRequestSuccessBye(data) {
+            $("#ajaxBtnBye").addClass("disabled");
+
+            var cartHtml = $.get()
+
+            $('#shoppingCart').html(cartHtml);
+        }
+    </script>
+}

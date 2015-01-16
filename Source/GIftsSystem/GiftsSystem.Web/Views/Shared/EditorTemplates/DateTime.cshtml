@@ -1,0 +1,8 @@
+﻿@model DateTime?
+@*@(Html.Kendo()
+.Calendar()
+.Name("calendar")
+.Min(DateTime.Now)
+.Format("DateTime")
+)*@
+@(Html.Kendo().DatePickerFor(m => m).Min(DateTime.Now))

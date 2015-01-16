@@ -1,0 +1,20 @@
+﻿namespace GiftsSystem.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public enum RegionNames
+    {
+        Sofia,
+        Plovdiv,
+        Burgas,
+        Ruse,
+        StaraZagora,
+        Blagoevgrad,
+        Vidin,
+        VelikoTurnovo
+    }
+}
