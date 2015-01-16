@@ -58,7 +58,9 @@
     <Compile Include="Mapping\IMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="MVCWrappers\Kendo.Mvc.dll" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
