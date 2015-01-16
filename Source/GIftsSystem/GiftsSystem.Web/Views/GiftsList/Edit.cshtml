@@ -1,4 +1,4 @@
-﻿@model System.Collections.Generic.ICollection<GiftsSystem.Models.GiftsList>
+﻿@model GiftsSystem.Web.ViewModels.GiftsList.EditGiftsListViewModel
 @{
     ViewBag.Title = "Edit";
 }
@@ -7,26 +7,53 @@
 {
     @Html.AntiForgeryToken()
     <fieldset>
-        <legend>Edit WishLists</legend>
-        @foreach (var collection in Model)
-        {
-            <div class="form-group">
-                @Html.Label(collection.Name, "WishList Name")
-                <div class="col-lg-10">
-                    @Html.Editor(collection.Name)
-                </div>
-
-                @foreach (var product in collection.Products)
-                {
-                    <div class="form-control">
-                        @Html.Label(product.Name)
-                        <div class="col-lg-10">
-                           <button class="btn btn-info">Remove</button>
-                        </div>
-                    </div>
-                }
+        <legend>Edit WishList @Model.Name</legend>
+        <div class="form-group">
+            <div class="col-lg-10">
+                @Html.EditorFor(model => model.Name)
             </div>
-        }
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button class="btn btn-default">Cancel</button>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+        </div>
     </fieldset>
-   
+
+}
+
+@foreach (var product in Model.Products)
+{
+    <div class="form-group">
+        @Html.Label(product.Name)
+        @if (product.Image != null)
+        {
+            <img src="@Url.Action("Image", "Product", new { id = product.ImageId.Value })" class="img-responsive" width="100" />
+        }
+        <div class="col-lg-10">
+            @using (Ajax.BeginForm("RemoveProduct", "GiftsList", new { productId = product.ID }, new AjaxOptions()
+                        {
+                            OnSuccess = "OnAjaxRequestSuccess",
+                            HttpMethod = "POST"
+                        }))
+            {
+                <input type="hidden" name="collectionId" value="@Model.ID" />
+
+                string idName = "ajaxBtn" + Model.ID;
+
+                <input type="submit" id=@idName value="Remove" class="btn btn-info" />
+
+            }
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        function OnAjaxRequestSuccess(data) {
+            var id="#ajaxBtn"+@Model.ID;
+            $(id).addClass("disabled");
+        }
+    </script>
 }

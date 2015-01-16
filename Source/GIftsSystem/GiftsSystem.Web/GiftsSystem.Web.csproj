@@ -218,6 +218,8 @@
     </Compile>
     <Compile Include="HtmlHelpers\KendoHelpers.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\GiftsList\CreateGiftsListViewModel.cs" />
+    <Compile Include="ViewModels\GiftsList\EditGiftsListViewModel.cs" />
     <Compile Include="ViewModels\Home\ListCategoryViewModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1331,9 +1333,11 @@
     <Content Include="Views\Shared\_SearchForProduct.cshtml" />
     <Content Include="Views\Product\ListProducts.cshtml" />
     <Content Include="Views\ShoppingCart\Details.cshtml" />
-    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Shared\_ShoppingCartIndex.cshtml" />
     <Content Include="Views\ShoppingCart\Pay.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SubmitAndCancleBtns.cshtml" />
+    <Content Include="Views\ShoppingCart\Main.cshtml" />
+    <Content Include="Views\Shared\_NumberOfProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

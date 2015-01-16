@@ -23,16 +23,16 @@
                     <li>
                         @product.Name
                         @*@Html.Display("BuyProduct", "BuyProduct", new { id=product.ID})*@
-                        @using (Ajax.BeginForm("ByeProductFromCollection", "Product", product.ID, new AjaxOptions()
+                        @using (Ajax.BeginForm("BuyProductFromCollection", "ShoppingCart", product.ID, new AjaxOptions()
         {
             OnSuccess = "OnAjaxRequestSuccessBye",
             HttpMethod = "POST"
         }))
                         {
-                            <input type="hidden" name="id" value="@product.ID" />
+                            <input type="hidden" name="productId" value="@product.ID" />
                             <input type="hidden" name="userID" value="@Model.ID" />
                             <input type="hidden" name="collectionID" value="@collection.ID" />
-                            <input type="submit" id="ajaxBtnBye" value="Bye Product" class="btn btn-primary" />
+                            <input type="submit" id="ajaxBtnBye" value="Buy Product" class="btn btn-primary" />
 
                         }
                     </li>

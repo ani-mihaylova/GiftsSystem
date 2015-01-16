@@ -1,11 +1,9 @@
-﻿@if (User.Identity.IsAuthenticated)
+﻿@using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "navbar-form navbar-left" }))
 {
-    using (Html.BeginForm("Search", "Product", FormMethod.Post, new { @class = "navbar-form navbar-left" }))
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-group">
-            <input type="text" class="form-control" id="inputProduct" name="inputProduct">
-        </div>
-        <button type="submit" class="btn btn-primary">Find product</button>
-    }
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputProduct" name="inputProduct">
+    </div>
+    <button type="submit" class="btn btn-primary">Find product</button>
 }
+

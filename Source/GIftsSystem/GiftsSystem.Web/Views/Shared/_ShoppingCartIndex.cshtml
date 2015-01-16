@@ -1,0 +1,20 @@
+﻿@model GiftsSystem.Web.ViewModels.ShoppingCart.ShoppingCartMainViewModel
+
+<div id="shoppingCart">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">ShoppingCart</h3>
+        </div>
+        <div class="panel-body">
+            <div class="list-group">
+                @if (Model.ShoppingCart != null)
+                {
+                    foreach (var product in Model.ShoppingCart.Products)
+                    {
+                        @Html.ActionLink(product.Name, "Details", "ShoppingCart", new { id = Model.ID }, new { @class = "list-group-item" })
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

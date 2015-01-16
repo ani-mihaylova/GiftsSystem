@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using GiftsSystem.Data;
-using GiftsSystem.Models;
-using AutoMapper.QueryableExtensions;
-using AutoMapper;
-using GiftsSystem.Web.ViewModels.User;
-using System.IO;
-using GiftsSystem.Common;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity;
-
-namespace GiftsSystem.Web.Controllers
+﻿namespace GiftsSystem.Web.Controllers
 {
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Web;
+    using System.Web.Mvc;
+    using AutoMapper.QueryableExtensions;
+    using GiftsSystem.Data;
+    using GiftsSystem.Models;
+    using GiftsSystem.Web.ViewModels.User;
+
     public class UserController : BaseController
     {
         public UserController(IGiftsSystemData data)
@@ -26,7 +18,7 @@ namespace GiftsSystem.Web.Controllers
 
         }
 
-        // GET: Users/Details/5
+        [HttpGet]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -43,8 +35,7 @@ namespace GiftsSystem.Web.Controllers
             return View("Details", user);
         }
 
-
-        // GET: RegularUsers/Edit/5
+        [HttpGet]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -61,7 +52,6 @@ namespace GiftsSystem.Web.Controllers
             return View("Edit", user);
         }
 
-        // POST: RegularUsers/Edit/5
         [HttpPost]
         public ActionResult Edit(EditUserViewModel model)
         {
@@ -133,22 +123,24 @@ namespace GiftsSystem.Web.Controllers
             return File(image.Content, "image/" + image.FileExtension);
         }
 
+        [HttpGet]
         public ActionResult Search(string inputUser)
         {
-            if (inputUser==null || inputUser==string.Empty)
+            if (inputUser == null || inputUser == string.Empty)
             {
                 return this.Redirect("/");
             }
-            
-            var currentUser=this.GetCurrentUser();
+
+            var currentUser = this.GetCurrentUser();
 
             var results = this.data.Users
                 .All()
-                .Where(u => u.UserName.Contains(inputUser) && u.Id!=currentUser.Id)
+                .Where(u => u.UserName.Contains(inputUser))
                 .ToList();
 
             return this.View("SearchResult", results);
         }
+
 
         public ActionResult ShowDetails(string id)
         {

@@ -28,11 +28,21 @@
                 foreach (var gisftsList in Model.GiftsCollections)
                 {
                     <h5>@gisftsList.Name</h5>
+                    @Html.ActionLink("EditCollection", "Edit", "GiftsList", new { collectionID = gisftsList.ID }, null)
                     <ul class="list-group">
                         @foreach (var product in gisftsList.Products)
                         {
                             <li class="list-group-item">
+                                @Html.ActionLink(product.Name, "Details", "Product", new { id = product.ID })
+                            </li>
+                        }
+                    </ul>
+                    <ul class="list-group">
+                        @foreach (var product in gisftsList.BoughtProducts)
+                        {
+                            <li class="list-group-item">
                                 @product.Name
+                                - Bought
                             </li>
                         }
                     </ul>
@@ -49,7 +59,7 @@
                 <ul class="list-group">
                     @foreach (var product in Model.ShoppingCart.Products)
                     {
-                        if (Model.ShoppingCart.BoughtProducts.ContainsKey(product.ID))
+                        if (Model.ShoppingCart.BoughtProducts.Contains(product))
                         {
                             <li class="list-group-item">
                                 @Html.ActionLink(product.Name, "Details", "ShoppingCart")
@@ -65,9 +75,6 @@
     <div class="panel-body">
         @Html.ActionLink("EditProfile", "Edit", new { id = Model.ID }, new { @class = "btn btn-info" })
     </div>
-    @*<div class="panel-body">
-            @Html.ActionLink("EditCollections", "Edit", "GiftsList", Model.GiftsCollections, new { @class = "btn btn-info" })
-        </div>*@
     <div class="panel-body">
         @Html.ActionLink("CreateCollections", "Create", "GiftsList", Model.GiftsCollections, new { @class = "btn btn-info" })
     </div>

@@ -19,17 +19,12 @@
 
         }
 
-        // GET: ShoppingCar
-        public ActionResult Index()
+        [HttpGet]
+        [ChildActionOnly]
+        //[OutputCache(Duration = 1000)]
+        public ActionResult ShoppingCartIndex()
         {
-
-            var result = this.GetCurrentShoppingCart();
-            if (result == null)
-            {
-                return Redirect("/");
-            }
-
-            return this.View("Index", result);
+            return UpdateShoppingCart();
         }
 
         [HttpGet]
@@ -40,7 +35,6 @@
             {
                 return Redirect("/");
             }
-
             return this.View("Details", result);
 
         }
@@ -82,17 +76,18 @@
             }
             newPaymentInfo.Countries = countryItems;
 
-            return this.View("Pay",newPaymentInfo);
+            return this.View("Pay", newPaymentInfo);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Pay(CreatePaymentInfoViewModel inputModel)
         {
-            if (this.ModelState.IsValid==false)
+            if (this.ModelState.IsValid == false)
             {
                 return this.RedirectToAction("Proceed");
             }
+
             var newPaymentInfo = Mapper.Map<PaymentInfo>(inputModel);
             var currentUser = this.GetCurrentUser();
             newPaymentInfo.User = currentUser;
@@ -102,9 +97,10 @@
 
             foreach (var product in currentShoppingCart.Products)
             {
-                if (!currentShoppingCart.BoughtProducts.ContainsKey(product.ID))
+                if (!currentShoppingCart.BoughtProducts.Contains(product))
                 {
-                    currentShoppingCart.BoughtProducts.Add(product.ID, true);
+                    currentShoppingCart.BoughtProducts.Add(product);
+                    currentShoppingCart.Products.Remove(product);
                 }
             }
 
@@ -130,7 +126,7 @@
         }
 
         [HttpPost]
-        public void ByeProduct(int id)
+        public ActionResult ByeProduct(int id)
         {
             var isAjax = Request.IsAjaxRequest();
             var product = this.data.Products.GetById(id);
@@ -138,52 +134,71 @@
             var currentUser = this.GetCurrentUser();
             if (currentUser.ShoppingCart == null)
             {
-                var newGiftsList = new GiftsList() { Name = currentUser.UserName + "Cart" };
-                this.data.GiftsLists.Add(newGiftsList);
-                currentUser.ShoppingCart = newGiftsList;
+                CreateShoppingCart(currentUser);
             }
 
             currentUser.ShoppingCart.Products.Add(product);
 
-            //this.data.Users.Update(currentUser);
-            //this.data.Products.Update(product);
-
             this.data.SaveChanges();
+
+            return UpdateShoppingCart();
+        }
+
+        private void CreateShoppingCart(ApplicationUser currentUser)
+        {
+            var newGiftsList = new GiftsList() { Name = currentUser.UserName + "Cart" };
+            this.data.GiftsLists.Add(newGiftsList);
+            currentUser.ShoppingCart = newGiftsList;
         }
 
 
+
         [HttpPost]
-        public void ByeProductFromCollection(int id, string userID, int collectionID)
+        public void BuyProductFromCollection(int productId, string userID, int collectionID)
         {
-            //var isAjax = Request.IsAjaxRequest();
-            //var product = this.data.Products.GetById(id);
+            var isAjax = Request.IsAjaxRequest();
+            var user = this.data.Users.GetById(userID);
+            var collection = user.GiftsCollections.FirstOrDefault(c => c.ID == collectionID);
+            var product = this.data.Products.GetById(productId);
+            collection.BoughtProducts.Add(product);
 
-            ////Set product as bought in collection
-            //var userWithCollection = this.data.Users.GetById(userID);
-            //var currentCollection = this.data.GiftsLists.GetById(collectionID);
-            //currentCollection.BoughtProducts.Add(product.ID, true);
+            var currentUser = this.GetCurrentUser();
+            if (currentUser.ShoppingCart == null)
+            {
+                CreateShoppingCart(currentUser);
+            }
 
-            ////Add product to current user's collection of bought prducts
-            //var currentUser = this.GetCurrentUser();
-            //currentUser.ShoppingCart.Products.Add(product);
+            currentUser.ShoppingCart.Products.Add(product);
 
-            //this.data.Users.Update(currentUser);
-            //this.data.Products.Update(product);
-
-            //this.data.SaveChanges();
+            this.data.SaveChanges();
         }
 
         private ShoppingCartMainViewModel GetCurrentShoppingCart()
         {
             var currentUser = this.GetCurrentUser();
 
+            if (currentUser == null)
+            {
+                var newCart = new ShoppingCartMainViewModel { ShoppingCart = new GiftsList() };
+                return newCart;
+            }
+
             var result = this.data.Users
                 .All()
                 .Where(u => u.Id == currentUser.Id)
                 .Project()
-                .To<ShoppingCartMainViewModel>().FirstOrDefault();
+                .To<ShoppingCartMainViewModel>()
+                .FirstOrDefault();
 
             return result;
         }
+
+        private ActionResult UpdateShoppingCart()
+        {
+            var result = this.GetCurrentShoppingCart();
+
+            return this.PartialView("_ShoppingCartIndex", result);
+        }
+
     }
 }
