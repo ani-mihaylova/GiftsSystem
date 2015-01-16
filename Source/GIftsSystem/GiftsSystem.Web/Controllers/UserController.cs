@@ -86,32 +86,6 @@
             return RedirectToAction("Details", new { id = model.ID });
         }
 
-        //// GET: RegularUsers/Delete/5
-        //public ActionResult Delete(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    RegularUser regularUser = db.ApplicationUsers.Find(id);
-        //    if (regularUser == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(regularUser);
-        //}
-
-        //// POST: RegularUsers/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(string id)
-        //{
-        //    RegularUser regularUser = db.ApplicationUsers.Find(id);
-        //    db.ApplicationUsers.Remove(regularUser);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
         public ActionResult Image(int id)
         {
             var image = this.data.Images.GetById(id);
