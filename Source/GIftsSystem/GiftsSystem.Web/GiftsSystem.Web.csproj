@@ -479,7 +479,6 @@
     <Content Include="Content\kendo\images\kendoui.woff" />
     <Content Include="Areas\Administration\Views\Category\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Product\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\DropdownList.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\EditProductViewModel.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\Start.jpg" />
