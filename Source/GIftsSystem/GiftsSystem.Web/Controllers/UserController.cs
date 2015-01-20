@@ -36,6 +36,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -53,6 +54,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(EditUserViewModel model)
         {
             if (ModelState.IsValid)
@@ -115,7 +117,7 @@
             return this.View("SearchResult", results);
         }
 
-
+        [Authorize]
         public ActionResult ShowDetails(string id)
         {
             var userToShow = this.data.Users

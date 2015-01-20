@@ -9,6 +9,7 @@
     using AutoMapper.QueryableExtensions;
     using AutoMapper;
 
+    [Authorize]
     public class GiftsListController : BaseController
     {
         public GiftsListController(IGiftsSystemData data)

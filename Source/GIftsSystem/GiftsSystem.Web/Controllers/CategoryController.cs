@@ -26,6 +26,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,6 +41,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
             var newModel = new CreateCategoryViewModel();
@@ -97,6 +99,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Edit(string name)
         {
             if (name == null)
@@ -111,6 +114,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditCategoryViewModel model)
         {

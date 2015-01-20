@@ -33,7 +33,7 @@ namespace GiftsSystem.Data.Migrations
             //Add Catagories
             this.SeedCatagories(context);
 
-            context.SaveChanges();
+            this.SeedProducts(context);
         }
 
         private void SeedRoles(ApplicationDbContext context)
@@ -67,6 +67,8 @@ namespace GiftsSystem.Data.Migrations
 
             this.userManager.AddToRole(adminUser.Id, GlobalConstants.AdminRoleName);
             this.userManager.AddToRole(companyUser.Id, GlobalConstants.CompanyRoleName);
+
+            context.SaveChanges();
         }
 
         private void SeedCatagories(ApplicationDbContext context)
@@ -137,10 +139,63 @@ namespace GiftsSystem.Data.Migrations
                    new Category(){ Name="HomeDecor", ParentCategory=homeCategoryId},
                     new Category(){ Name="Lamp", ParentCategory=homeCategoryId}
             };
+
             foreach (var item in subCategories)
             {
                 context.Categories.Add(item);
             }
+
+            context.SaveChanges();
+        }
+
+        private void SeedProducts(ApplicationDbContext context)
+        {
+            if (context.Products.Count()!=0)
+            {
+                return;
+            }
+
+            var watchCategory = context.Categories.FirstOrDefault(c => c.Name == "Watches");
+            var jewelryCategory = context.Categories.FirstOrDefault(c => c.Name == "Jewelry");
+            var furnitureCategory = context.Categories.FirstOrDefault(c => c.Name == "Furniture");
+
+            var products = new List<Product>()
+            {
+                new Product()
+                { 
+                    Name="WatchCasio", 
+                    Category=watchCategory,
+                    Condition="New",
+                    ExpirationDate=new DateTime(2015,12,1),
+                    Quantity=1,
+                    Price=40d
+                },
+                new Product()
+                {
+                    Name="Dangling Earrings",
+                    Category=jewelryCategory,
+                    Condition="New",
+                    ExpirationDate=new DateTime(2015,12,1),
+                    Quantity=1,
+                    Price=100d
+                },
+                new Product()
+                {
+                    Name="Chair",
+                    Category=furnitureCategory,
+                    Condition="Used",
+                    ExpirationDate=new DateTime(2015,12,1),
+                    Quantity=1,
+                    Price=20d
+                }
+            };
+
+            foreach (var product in products)
+            {
+                context.Products.Add(product);
+            }
+
+            context.SaveChanges();
         }
     }
 }

@@ -27,6 +27,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Create(string categoryName)
         {
             var productModel = new CreateProductViewModel();
@@ -108,6 +109,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -150,6 +152,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public void AddToWishList(int id, string userCollection)
         {
             var isAjax = Request.IsAjaxRequest();

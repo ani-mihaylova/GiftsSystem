@@ -21,6 +21,7 @@
 
         [HttpGet]
         [ChildActionOnly]
+        [Authorize]
         //[OutputCache(Duration = 1000)]
         public ActionResult ShoppingCartIndex()
         {
@@ -28,6 +29,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Details()
         {
             var result = this.GetCurrentShoppingCart();
@@ -40,12 +42,14 @@
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Details(ShoppingCartMainViewModel inputModel)
         {
             return this.View();
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Proceed()
         {
             var newPaymentInfo = new CreatePaymentInfoViewModel();
@@ -80,6 +84,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Pay(CreatePaymentInfoViewModel inputModel)
         {
@@ -109,6 +114,7 @@
             return this.Redirect("/");
         }
 
+        [Authorize]
         public ActionResult RemoveProduct(int id)
         {
             var currentUser = GetCurrentUser();
@@ -126,6 +132,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult ByeProduct(int id)
         {
             var isAjax = Request.IsAjaxRequest();
@@ -154,6 +161,7 @@
 
 
         [HttpPost]
+        [Authorize]
         public void BuyProductFromCollection(int productId, string userID, int collectionID)
         {
             var isAjax = Request.IsAjaxRequest();
