@@ -21,7 +21,7 @@
 
         [HttpGet]
         [ChildActionOnly]
-        [Authorize]
+        //[Authorize]
         //[OutputCache(Duration = 1000)]
         public ActionResult ShoppingCartIndex()
         {
@@ -204,7 +204,6 @@
         private ActionResult UpdateShoppingCart()
         {
             var result = this.GetCurrentShoppingCart();
-
             return this.PartialView("_ShoppingCartIndex", result);
         }
 
